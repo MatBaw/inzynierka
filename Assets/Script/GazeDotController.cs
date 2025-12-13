@@ -8,6 +8,16 @@ public class GazeDotController : MonoBehaviour
     [SerializeField] RectTransform dot;
     [SerializeField] Canvas canvas;
 
+    [Header("Smoothing (anti-jitter)")]
+    [SerializeField] bool smoothingEnabled = true;
+    [Tooltip("Więcej = stabilniej, ale większy lag. Polecam 0.06–0.12")]
+    [SerializeField] float halfLife = 0.08f;
+    [Tooltip("Ignoruj mikrodrgania mniejsze niż tyle pikseli")]
+    [SerializeField] float deadzonePx = 6f;
+
+    private Vector2 _smoothedScreen;
+    private bool _hasSmoothed;
+
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
     void Start()
     {
@@ -34,13 +44,37 @@ public class GazeDotController : MonoBehaviour
         float x01 = Mathf.Clamp01((nx + 1f) * 0.5f);
         float y01 = Mathf.Clamp01((ny + 1f) * 0.5f);
 
-        var screen = new Vector2(x01 * Screen.width, y01 * Screen.height);
+        Vector2 screen = new Vector2(x01 * Screen.width, y01 * Screen.height);
+
+        if (smoothingEnabled)
+            screen = SmoothScreen(screen, Time.deltaTime);
 
         var canvasRect = canvas.transform as RectTransform;
         var cam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
 
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screen, cam, out var local))
             dot.anchoredPosition = local;
+    }
+
+    Vector2 SmoothScreen(Vector2 raw, float dt)
+    {
+        if (!_hasSmoothed)
+        {
+            _smoothedScreen = raw;
+            _hasSmoothed = true;
+            return raw;
+        }
+
+        // deadzone: jeśli mały ruch, zostaw poprzednią pozycję
+        if ((raw - _smoothedScreen).sqrMagnitude < deadzonePx * deadzonePx)
+            return _smoothedScreen;
+
+        // EMA z half-life, stabilne niezależnie od FPS
+        float hl = Mathf.Max(halfLife, 0.0001f);
+        float alpha = 1f - Mathf.Exp(-Mathf.Log(2f) * dt / hl);
+
+        _smoothedScreen = Vector2.Lerp(_smoothedScreen, raw, alpha);
+        return _smoothedScreen;
     }
 
     static bool TryGetNormalizedXY(GazePoint gp, out float x, out float y)
@@ -77,11 +111,9 @@ public class GazeDotController : MonoBehaviour
 
         var t = obj.GetType();
 
-        // field
         var f = t.GetField(name, BindingFlags.Public | BindingFlags.Instance);
         if (f != null) { value = f.GetValue(obj); return true; }
 
-        // property
         var p = t.GetProperty(name, BindingFlags.Public | BindingFlags.Instance);
         if (p != null && p.GetIndexParameters().Length == 0)
         {
