@@ -5,6 +5,81 @@ public class GazeDwellClick2D : MonoBehaviour
     [Header("References")]
     [SerializeField] RectTransform gazeDot;   // Canvas/GazeDot
     [SerializeField] Camera worldCam;         // Main Camera
+    [SerializeField] GazeCursorRingUI cursorUI; // skrypt z GazeDot
+
+    [Header("Dwell")]
+    [SerializeField] float dwellSeconds = 3f;
+
+    private GazeDwellTarget current;
+    private float timer;
+
+    void Awake()
+    {
+        if (worldCam == null) worldCam = Camera.main;
+
+        // jeśli nie podpięte ręcznie, spróbuj znaleźć na gazeDot
+        if (cursorUI == null && gazeDot != null)
+            cursorUI = gazeDot.GetComponent<GazeCursorRingUI>();
+    }
+
+    void Update()
+    {
+        if (gazeDot == null || worldCam == null) return;
+
+        // screen point z kropki
+        Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, gazeDot.position);
+
+        // screen -> world (2D)
+        Vector3 worldPos = worldCam.ScreenToWorldPoint(new Vector3(
+            screenPos.x, screenPos.y, -worldCam.transform.position.z));
+
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+        var next = hit.collider ? hit.collider.GetComponent<GazeDwellTarget>() : null;
+
+        // zmiana celu = reset
+        if (next != current)
+        {
+            if (current != null) current.OnGazeExit?.Invoke();
+            current = next;
+            timer = 0f;
+
+            if (current != null) current.OnGazeEnter?.Invoke();
+            else cursorUI?.SetIdle();
+        }
+
+        if (current == null)
+        {
+            cursorUI?.SetIdle();
+            return;
+        }
+
+        timer += Time.deltaTime;
+
+        float progress = dwellSeconds <= 0.001f ? 1f : (timer / dwellSeconds);
+        cursorUI?.SetHoverProgress(progress);
+
+        if (timer >= dwellSeconds)
+        {
+            current.OnDwellClick?.Invoke();
+
+            // żeby nie odpalało w pętli:
+            current = null;
+            timer = 0f;
+            cursorUI?.SetIdle();
+        } 
+   }
+
+
+}
+
+
+/*using UnityEngine;
+
+public class GazeDwellClick2D : MonoBehaviour
+{
+    [Header("References")]
+    [SerializeField] RectTransform gazeDot;   // Canvas/GazeDot
+    [SerializeField] Camera worldCam;         // Main Camera
 
     [Header("Dwell - select target")]
     [SerializeField] float dwellSeconds = 3f;
@@ -86,4 +161,4 @@ public class GazeDwellClick2D : MonoBehaviour
         // wywołaj publiczną metodę bez parametrów
         zoomOutBehaviour.Invoke(zoomOutMethodName, 0f);
     }
-}
+}*/
