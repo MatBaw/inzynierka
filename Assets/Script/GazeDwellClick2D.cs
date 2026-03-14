@@ -2,49 +2,95 @@ using UnityEngine;
 
 public class GazeDwellClick2D : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] RectTransform gazeDot;   // Canvas/GazeDot
-    [SerializeField] Camera worldCam;         // Main Camera
-    [SerializeField] GazeCursorRingUI cursorUI; // skrypt z GazeDot
+    [Header("=== WYMAGANE REFERENCJE ===")]
+    [SerializeField] RectTransform gazeDot;
+    [SerializeField] Camera worldCam;
+    [SerializeField] GazeCursorRingUI cursorUI;
 
-    [Header("Dwell")]
-    [SerializeField] float dwellSeconds = 3f;
+    [Header("=== DWELL CZAS ===")]
+    [SerializeField] float dwellSeconds = 2.5f;
+
+    [Header("=== COOLDOWN ===")]
+    [SerializeField] float cooldownAfterClick = 1.5f;
+    [SerializeField] bool blockDwellAfterMouseClick = true;
+
+    [Header("=== DEBUG ===")]
+    [SerializeField] bool showDebugLogs = false;
 
     private GazeDwellTarget current;
-    private float timer;
+    private float dwellTimer;
+    private float cooldownTimer;
+
+    public static GazeDwellClick2D Instance { get; private set; }
 
     void Awake()
     {
+        Instance = this;
         if (worldCam == null) worldCam = Camera.main;
-
-        // jeśli nie podpięte ręcznie, spróbuj znaleźć na gazeDot
         if (cursorUI == null && gazeDot != null)
             cursorUI = gazeDot.GetComponent<GazeCursorRingUI>();
+
+        if (cursorUI == null)
+            Debug.LogError("[GazeDwellClick2D] BRAK cursorUI! Podepnij GazeCursorRingUI.", this);
+    }
+
+    void OnEnable()
+    {
+        current = null;
+        dwellTimer = 0f;
+        // ✅ Resetuj idle tylko jeśli GazeDwellClickUI nie śledzi niczego
+        if (!UIIsTracking())
+            cursorUI?.SetIdle();
+    }
+
+    // ✅ Helper: czy GazeDwellClickUI aktualnie śledzi przycisk
+    bool UIIsTracking()
+    {
+        return GazeDwellClickUI.Instance != null && GazeDwellClickUI.Instance.IsTracking;
     }
 
     void Update()
     {
+        // ✅ Jeśli UI śledzi przycisk — oddaj mu kontrolę nad cursorem, nic nie rób
+        if (UIIsTracking()) return;
+
+        if (cooldownTimer > 0f)
+        {
+            cooldownTimer -= Time.deltaTime;
+            if (current != null) ExitCurrentTarget();
+            cursorUI?.SetIdle();
+            return;
+        }
+
+        if (blockDwellAfterMouseClick && Input.GetMouseButtonDown(0))
+            TriggerCooldown();
+
         if (gazeDot == null || worldCam == null) return;
 
-        // screen point z kropki
         Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, gazeDot.position);
+        float depth = -worldCam.transform.position.z;
+        Vector3 worldPos = worldCam.ScreenToWorldPoint(
+            new Vector3(screenPos.x, screenPos.y, depth));
 
-        // screen -> world (2D)
-        Vector3 worldPos = worldCam.ScreenToWorldPoint(new Vector3(
-            screenPos.x, screenPos.y, -worldCam.transform.position.z));
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)worldPos, Vector2.zero);
 
-        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
-        var next = hit.collider ? hit.collider.GetComponent<GazeDwellTarget>() : null;
+        GazeDwellTarget next = null;
+        if (hit.collider != null)
+        {
+            next = hit.collider.GetComponent<GazeDwellTarget>()
+                ?? hit.collider.GetComponentInParent<GazeDwellTarget>();
+        }
 
-        // zmiana celu = reset
         if (next != current)
         {
-            if (current != null) current.OnGazeExit?.Invoke();
+            ExitCurrentTarget();
             current = next;
-            timer = 0f;
-
-            if (current != null) current.OnGazeEnter?.Invoke();
-            else cursorUI?.SetIdle();
+            dwellTimer = 0f;
+            if (current != null)
+            {
+                current.OnGazeEnter?.Invoke();
+                if (showDebugLogs) Debug.Log($"[GazeDwell] Wejście: {current.name}");
+            }
         }
 
         if (current == null)
@@ -53,112 +99,46 @@ public class GazeDwellClick2D : MonoBehaviour
             return;
         }
 
-        timer += Time.deltaTime;
-
-        float progress = dwellSeconds <= 0.001f ? 1f : (timer / dwellSeconds);
+        dwellTimer += Time.deltaTime;
+        float progress = dwellSeconds <= 0.001f ? 1f : (dwellTimer / dwellSeconds);
         cursorUI?.SetHoverProgress(progress);
 
-        if (timer >= dwellSeconds)
-        {
-            current.OnDwellClick?.Invoke();
+        if (showDebugLogs && Time.frameCount % 60 == 0)
+            Debug.Log($"[GazeDwell] {current.name} progress={progress:F2}");
 
-            // żeby nie odpalało w pętli:
-            current = null;
-            timer = 0f;
+        if (dwellTimer >= dwellSeconds)
+        {
+            if (showDebugLogs) Debug.Log($"[GazeDwell] KLIK: {current.name}");
+            current.OnDwellClick?.Invoke();
             cursorUI?.SetIdle();
-        } 
-   }
+            ExitCurrentTarget();
+            TriggerCooldown();
+        }
+    }
 
+    void ExitCurrentTarget()
+    {
+        if (current != null)
+        {
+            current.OnGazeExit?.Invoke();
+            current = null;
+        }
+        dwellTimer = 0f;
+    }
 
+    public void TriggerCooldown()
+    {
+        cooldownTimer = cooldownAfterClick;
+        ExitCurrentTarget();
+        if (!UIIsTracking())
+            cursorUI?.SetIdle();
+    }
+
+    public void TriggerCooldown(float duration)
+    {
+        cooldownTimer = duration;
+        ExitCurrentTarget();
+        if (!UIIsTracking())
+            cursorUI?.SetIdle();
+    }
 }
-
-
-/*using UnityEngine;
-
-public class GazeDwellClick2D : MonoBehaviour
-{
-    [Header("References")]
-    [SerializeField] RectTransform gazeDot;   // Canvas/GazeDot
-    [SerializeField] Camera worldCam;         // Main Camera
-
-    [Header("Dwell - select target")]
-    [SerializeField] float dwellSeconds = 3f;
-
-    [Header("Dwell - look outside to zoom out")]
-    [SerializeField] bool enableLookOutsideZoomOut = true;
-    [SerializeField] float outsideSeconds = 1.0f; // po ilu sekundach patrzenia w puste ma odzoomować
-    [SerializeField] MonoBehaviour zoomOutBehaviour; // przeciągnij tu obiekt ze skryptem ClickOutsideToZoomOut
-    [SerializeField] string zoomOutMethodName = "ZoomOut"; // jeśli masz inną nazwę metody, zmień
-
-    private GazeDwellTarget current;
-    private float timer;
-
-    private float outsideTimer;
-
-    void Awake()
-    {
-        if (worldCam == null) worldCam = Camera.main;
-    }
-
-    void Update()
-    {
-        if (gazeDot == null || worldCam == null) return;
-
-        Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, gazeDot.position);
-
-        Vector3 worldPos = worldCam.ScreenToWorldPoint(new Vector3(
-            screenPos.x, screenPos.y, -worldCam.transform.position.z));
-
-        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
-        var next = hit.collider ? hit.collider.GetComponent<GazeDwellTarget>() : null;
-
-        // ---- OUTSIDE LOOK LOGIC ----
-        if (enableLookOutsideZoomOut)
-        {
-            bool lookingAtNothing = (hit.collider == null);
-
-            if (lookingAtNothing)
-            {
-                outsideTimer += Time.deltaTime;
-
-                if (outsideTimer >= outsideSeconds)
-                {
-                    outsideTimer = 0f;
-                    TryZoomOut();
-                }
-            }
-            else
-            {
-                outsideTimer = 0f;
-            }
-        }
-
-        // ---- DWELL SELECT LOGIC ----
-        if (next != current)
-        {
-            if (current != null) current.OnGazeExit?.Invoke();
-            current = next;
-            timer = 0f;
-            if (current != null) current.OnGazeEnter?.Invoke();
-        }
-
-        if (current == null) return;
-
-        timer += Time.deltaTime;
-
-        if (timer >= dwellSeconds)
-        {
-            current.OnDwellClick?.Invoke();
-            current = null;   // żeby nie klikało w pętli
-            timer = 0f;
-        }
-    }
-
-    void TryZoomOut()
-    {
-        if (zoomOutBehaviour == null) return;
-
-        // wywołaj publiczną metodę bez parametrów
-        zoomOutBehaviour.Invoke(zoomOutMethodName, 0f);
-    }
-}*/

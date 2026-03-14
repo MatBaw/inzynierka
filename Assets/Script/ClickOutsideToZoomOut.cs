@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ClickOutsideToZoomOut : MonoBehaviour
 {
     private CameraZoomController zoomController;
     private Camera cam;
+
+    [Header("Block zoom-out while this UI is open (optional)")]
+    [SerializeField] GameObject blockZoomOutWhenActive; // przeciągnij ClockPuzzleUI
 
     // ten klik ma być zignorowany (klik, który zrobił zoom)
     private bool ignoreNextClick = false;
@@ -24,12 +28,20 @@ public class ClickOutsideToZoomOut : MonoBehaviour
     {
         if (zoomController == null) return;
 
+        // ✅ Jeśli puzzle/UI jest otwarte -> NIE odzoomowuj w ogóle
+        if (blockZoomOutWhenActive != null && blockZoomOutWhenActive.activeInHierarchy)
+            return;
+
         if (!zoomController.IsZoomed)
         {
             // jak nie ma zooma, to i tak nie ma czego ignorować
             ignoreNextClick = false;
             return;
         }
+
+        // ✅ Klik w UI (przycisk) -> NIE odzoomowuj
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            return;
 
         // jeśli mamy klik do zignorowania – „zjadamy” pierwszy click i wychodzimy
         if (ignoreNextClick)
@@ -65,7 +77,7 @@ public class ClickOutsideToZoomOut : MonoBehaviour
                     }
                 }
 
-                // 2) jeśli colliderów nie ma, sprawdzamy, czy klik jest w boundsach sprite'ów szafki
+                // 2) jeśli colliderów nie ma, sprawdzamy, czy klik jest w boundsach sprite'ów
                 if (!clickedOnTarget)
                 {
                     SpriteRenderer[] renderers =
@@ -94,6 +106,10 @@ public class ClickOutsideToZoomOut : MonoBehaviour
     {
         if (zoomController == null) return;
         if (!zoomController.IsZoomed) return;
+
+        // ✅ jeśli UI jest aktywne, też blokujemy ręczne wywołanie
+        if (blockZoomOutWhenActive != null && blockZoomOutWhenActive.activeInHierarchy)
+            return;
 
         if (zoomController.ZoomTarget != null)
         {

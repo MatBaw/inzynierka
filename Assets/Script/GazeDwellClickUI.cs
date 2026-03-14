@@ -5,87 +5,156 @@ using UnityEngine.UI;
 
 public class GazeDwellClickUI : MonoBehaviour
 {
-    [Header("Refs")]
-    [SerializeField] RectTransform gazeDot;          // Canvas/GazeDot
-    [SerializeField] GraphicRaycaster raycaster;     // GraphicRaycaster z CANVAS
-    [SerializeField] EventSystem eventSystem;        // EventSystem ze sceny
+    public static GazeDwellClickUI Instance { get; private set; }
 
-    [Header("Dwell")]
-    [SerializeField] float dwellSeconds = 3f;
-    [SerializeField] bool fireOnlyOnceUntilLookAway = true;
+    [Header("=== WYMAGANE REFERENCJE ===")]
+    [SerializeField] private RectTransform gazeDot;
+    [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private GazeCursorRingUI cursorUI;
 
-    [Header("Debug")]
-    [SerializeField] bool debugLogHits = false;
+    [Header("=== DWELL CZAS ===")]
+    [SerializeField] private float dwellSeconds = 1.2f;
+
+    [Header("=== COOLDOWN ===")]
+    [SerializeField] private float cooldownAfterClick = 0.5f;
+
+    [Header("=== DEBUG ===")]
+    [SerializeField] private bool showDebugLogs = false;
 
     private Button currentButton;
-    private float timer;
+    private float dwellTimer;
+    private float cooldownTimer;
 
-    void Awake()
+    public bool IsTracking => currentButton != null;
+
+    private PointerEventData pointerData;
+    private readonly List<RaycastResult> raycastResults = new List<RaycastResult>();
+
+    private void Awake()
     {
-        if (eventSystem == null) eventSystem = EventSystem.current;
+        Instance = this;
 
-        // jeśli nie podpięto ręcznie, spróbuj znaleźć Canvas i jego GraphicRaycaster
-        if (raycaster == null)
+        if (eventSystem == null)
+            eventSystem = EventSystem.current;
+
+        if (cursorUI == null && gazeDot != null)
+            cursorUI = gazeDot.GetComponent<GazeCursorRingUI>();
+
+        if (eventSystem != null)
+            pointerData = new PointerEventData(eventSystem);
+
+        if (eventSystem == null)
+            Debug.LogWarning("[GazeDwellClickUI] Brak EventSystem.", this);
+
+        if (cursorUI == null)
+            Debug.LogWarning("[GazeDwellClickUI] Brak cursorUI.", this);
+    }
+
+    private void OnEnable()
+    {
+        currentButton = null;
+        dwellTimer = 0f;
+        cooldownTimer = 0f;
+        cursorUI?.SetIdle();
+    }
+
+    private void OnDisable()
+    {
+        ExitCurrentButton();
+        cursorUI?.SetIdle();
+
+        if (Instance == this)
+            Instance = null;
+    }
+
+    private void Update()
+    {
+        if (eventSystem == null)
+            eventSystem = EventSystem.current;
+
+        if (eventSystem == null || gazeDot == null)
+            return;
+
+        if (pointerData == null)
+            pointerData = new PointerEventData(eventSystem);
+
+        if (cooldownTimer > 0f)
         {
-            var c = GetComponentInParent<Canvas>();
-            if (c != null) raycaster = c.GetComponent<GraphicRaycaster>();
+            cooldownTimer -= Time.deltaTime;
+            ExitCurrentButton();
+            return;
+        }
+
+        Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, gazeDot.position);
+
+        pointerData.Reset();
+        pointerData.position = screenPos;
+
+        raycastResults.Clear();
+        eventSystem.RaycastAll(pointerData, raycastResults);
+
+        Button nextButton = FindFirstValidButton(raycastResults);
+
+        if (nextButton != currentButton)
+        {
+            ExitCurrentButton();
+            currentButton = nextButton;
+            dwellTimer = 0f;
+
+            if (currentButton != null && showDebugLogs)
+                Debug.Log($"[GazeUI] Wejście: {currentButton.name}", currentButton);
+        }
+
+        // Nic UI nie śledzimy -> nie ruszamy kursora,
+        // żeby 2D/world mogło nim sterować.
+        if (currentButton == null)
+            return;
+
+        if (!currentButton.interactable || !currentButton.gameObject.activeInHierarchy)
+        {
+            ExitCurrentButton();
+            return;
+        }
+
+        dwellTimer += Time.deltaTime;
+        float progress = dwellSeconds <= 0.001f ? 1f : dwellTimer / dwellSeconds;
+
+        cursorUI?.SetHoverProgress(progress);
+
+        if (showDebugLogs && Time.frameCount % 60 == 0)
+            Debug.Log($"[GazeUI] {currentButton.name} progress={progress:F2}", currentButton);
+
+        if (dwellTimer >= dwellSeconds)
+        {
+            if (showDebugLogs)
+                Debug.Log($"[GazeUI] KLIK: {currentButton.name}", currentButton);
+
+            currentButton.onClick.Invoke();
+            cursorUI?.SetIdle();
+
+            ExitCurrentButton();
+            cooldownTimer = cooldownAfterClick;
         }
     }
 
-    void Update()
+    private Button FindFirstValidButton(List<RaycastResult> results)
     {
-        if (gazeDot == null || raycaster == null || eventSystem == null) return;
-
-        // Canvas, na którym działa raycaster
-        var canvas = raycaster.GetComponent<Canvas>();
-
-        // WAŻNE: dla WorldSpace / ScreenSpaceCamera musisz użyć worldCamera z Canvas
-        Camera uiCam = null;
-        if (canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay)
-            uiCam = canvas.worldCamera;
-
-        // pozycja spojrzenia w screen-space
-        Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(uiCam, gazeDot.position);
-
-        // UI raycast
-        var pointer = new PointerEventData(eventSystem) { position = screenPos };
-        var results = new List<RaycastResult>();
-        raycaster.Raycast(pointer, results);
-
-        if (debugLogHits)
-        {
-            Debug.Log(results.Count > 0 ? $"UI hit: {results[0].gameObject.name}" : "UI hit: NONE");
-        }
-
-        Button next = null;
-
-        // znajdź pierwszy obiekt z Buttonem (albo jego parent)
         for (int i = 0; i < results.Count; i++)
         {
-            var go = results[i].gameObject;
-            next = go.GetComponent<Button>() ?? go.GetComponentInParent<Button>();
-            if (next != null) break;
+            GameObject go = results[i].gameObject;
+            if (go == null) continue;
+
+            Button btn = go.GetComponent<Button>() ?? go.GetComponentInParent<Button>();
+            if (btn != null && btn.isActiveAndEnabled && btn.interactable)
+                return btn;
         }
 
-        // zmiana celu -> reset timera
-        if (next != currentButton)
-        {
-            currentButton = next;
-            timer = 0f;
-        }
+        return null;
+    }
 
-        if (currentButton == null) return;
-
-        timer += Time.deltaTime;
-
-        if (timer >= dwellSeconds)
-        {
-            currentButton.onClick.Invoke();
-
-            if (fireOnlyOnceUntilLookAway)
-                currentButton = null;
-
-            timer = 0f;
-        }
+    private void ExitCurrentButton()
+    {
+        currentButton = null;
+        dwellTimer = 0f;
     }
 }

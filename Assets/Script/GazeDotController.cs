@@ -10,10 +10,8 @@ public class GazeDotController : MonoBehaviour
 
     [Header("Smoothing (anti-jitter)")]
     [SerializeField] bool smoothingEnabled = true;
-    [Tooltip("Więcej = stabilniej, ale większy lag. Polecam 0.06–0.12")]
     [SerializeField] float halfLife = 0.08f;
-    [Tooltip("Ignoruj mikrodrgania mniejsze niż tyle pikseli")]
-    [SerializeField] float deadzonePx = 6f;
+    [SerializeField] float deadzonePx = 25f;
 
     private Vector2 _smoothedScreen;
     private bool _hasSmoothed;
@@ -23,6 +21,9 @@ public class GazeDotController : MonoBehaviour
     {
         if (dot == null) dot = GetComponent<RectTransform>();
         if (canvas == null) canvas = GetComponentInParent<Canvas>();
+
+        // Ustaw GazeDot na środku ekranu zanim Tobii zacznie dawać dane
+        dot.anchoredPosition = Vector2.zero;
 
         var hwnd = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
         bool ok = TobiiGameIntegrationApi.TrackWindow(hwnd);
@@ -34,7 +35,11 @@ public class GazeDotController : MonoBehaviour
         TobiiGameIntegrationApi.Update();
 
         var points = TobiiGameIntegrationApi.GetGazePoints();
-        if (points == null || points.Count == 0) return;
+        if (points == null || points.Count == 0)
+        {
+            // Brak danych z Tobii — zostań w ostatniej pozycji (nie wracaj do 0,0)
+            return;
+        }
 
         var gp = points[points.Count - 1];
 
@@ -65,14 +70,11 @@ public class GazeDotController : MonoBehaviour
             return raw;
         }
 
-        // deadzone: jeśli mały ruch, zostaw poprzednią pozycję
         if ((raw - _smoothedScreen).sqrMagnitude < deadzonePx * deadzonePx)
             return _smoothedScreen;
 
-        // EMA z half-life, stabilne niezależnie od FPS
         float hl = Mathf.Max(halfLife, 0.0001f);
         float alpha = 1f - Mathf.Exp(-Mathf.Log(2f) * dt / hl);
-
         _smoothedScreen = Vector2.Lerp(_smoothedScreen, raw, alpha);
         return _smoothedScreen;
     }
@@ -81,16 +83,12 @@ public class GazeDotController : MonoBehaviour
     {
         x = y = 0f;
 
-        // 1) gp.X / gp.Y jako field albo property
         if (TryGetFloatMember(gp, "X", out x) && TryGetFloatMember(gp, "Y", out y))
             return true;
 
-        // 2) gp.Position.X / gp.Position.Y
         if (TryGetObjMember(gp, "Position", out var pos) && pos != null)
-        {
             if (TryGetFloatMember(pos, "X", out x) && TryGetFloatMember(pos, "Y", out y))
                 return true;
-        }
 
         return false;
     }
@@ -99,7 +97,6 @@ public class GazeDotController : MonoBehaviour
     {
         value = 0f;
         if (!TryGetObjMember(obj, name, out var raw) || raw == null) return false;
-
         try { value = Convert.ToSingle(raw); return true; }
         catch { return false; }
     }
@@ -108,19 +105,11 @@ public class GazeDotController : MonoBehaviour
     {
         value = null;
         if (obj == null) return false;
-
         var t = obj.GetType();
-
         var f = t.GetField(name, BindingFlags.Public | BindingFlags.Instance);
         if (f != null) { value = f.GetValue(obj); return true; }
-
         var p = t.GetProperty(name, BindingFlags.Public | BindingFlags.Instance);
-        if (p != null && p.GetIndexParameters().Length == 0)
-        {
-            value = p.GetValue(obj);
-            return true;
-        }
-
+        if (p != null && p.GetIndexParameters().Length == 0) { value = p.GetValue(obj); return true; }
         return false;
     }
 #else
@@ -128,7 +117,9 @@ public class GazeDotController : MonoBehaviour
     {
         if (dot == null) dot = GetComponent<RectTransform>();
         if (canvas == null) canvas = GetComponentInParent<Canvas>();
-        Debug.Log("GazeDotController: działa w Windows buildzie (nie w Unity Editor).");
+        // W edytorze symuluj pozycję środka ekranu
+        if (dot != null) dot.anchoredPosition = Vector2.zero;
+        Debug.Log("GazeDotController: tylko w Windows build.");
     }
 #endif
 }
