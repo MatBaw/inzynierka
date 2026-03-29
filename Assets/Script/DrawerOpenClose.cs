@@ -7,6 +7,11 @@ public class DrawerOpenClose : MonoBehaviour
     [SerializeField] private Vector3 openOffset = new Vector3(0f, -0.25f, 0f);
     [SerializeField] private float moveDuration = 0.2f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip openSfx;
+    [SerializeField] [Range(0f, 1f)] private float sfxVolume = 1f;
+
     private static DrawerOpenClose currentlyOpenDrawer;
 
     private Vector3 closedPos;
@@ -20,6 +25,9 @@ public class DrawerOpenClose : MonoBehaviour
     {
         closedPos = transform.localPosition;
         openPos = closedPos + openOffset;
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     public void ToggleDrawer()
@@ -51,6 +59,7 @@ public class DrawerOpenClose : MonoBehaviour
         if (moveRoutine != null)
             StopCoroutine(moveRoutine);
 
+        PlaySfx(openSfx);
         moveRoutine = StartCoroutine(MoveDrawer(openPos));
         isOpen = true;
     }
@@ -64,6 +73,14 @@ public class DrawerOpenClose : MonoBehaviour
 
         moveRoutine = StartCoroutine(MoveDrawer(closedPos));
         isOpen = false;
+    }
+
+    private void PlaySfx(AudioClip clip)
+    {
+        if (audioSource == null || clip == null)
+            return;
+
+        audioSource.PlayOneShot(clip, sfxVolume);
     }
 
     private IEnumerator MoveDrawer(Vector3 targetPos)

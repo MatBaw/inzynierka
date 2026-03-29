@@ -59,30 +59,35 @@ public class ClockPuzzleUI : MonoBehaviour
         }
     }
 
-    void OnEnable()
+void OnEnable()
+{
+    if (ClockState.IsSolved)
     {
-        closingLocked = false;
-        RestoreColors();
-
-        // wczytaj ostatni czas
-        if (ClockState.HasValue)
-        {
-            hour = ClockState.Hour;
-            minute = ClockState.Minute;
-        }
-        else
-        {
-            hour = Mathf.Clamp(startHour, 0, 23);
-            minute = Mathf.Clamp(startMinute, 0, 59);
-        }
-
-        if (inventoryBarToHide != null) inventoryBarToHide.SetActive(false);
-        if (hideExtraUI != null)
-            foreach (var go in hideExtraUI)
-                if (go != null) go.SetActive(false);
-
-        RefreshTexts();
+        gameObject.SetActive(false);
+        return;
     }
+
+    closingLocked = false;
+    RestoreColors();
+
+    if (ClockState.HasValue)
+    {
+        hour = ClockState.Hour;
+        minute = ClockState.Minute;
+    }
+    else
+    {
+        hour = Mathf.Clamp(startHour, 0, 23);
+        minute = Mathf.Clamp(startMinute, 0, 59);
+    }
+
+    if (inventoryBarToHide != null) inventoryBarToHide.SetActive(false);
+    if (hideExtraUI != null)
+        foreach (var go in hideExtraUI)
+            if (go != null) go.SetActive(false);
+
+    RefreshTexts();
+}
 
     void OnDisable()
     {

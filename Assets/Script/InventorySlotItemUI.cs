@@ -1,5 +1,98 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+public class InventorySlotItemUI : MonoBehaviour, IPointerClickHandler
+{
+    [Header("Index slotu")]
+    [SerializeField] private int slotIndex = 0;
+
+    [Header("UI")]
+    [SerializeField] private Image iconImage;
+    [SerializeField] private GameObject selectedHighlight;
+
+    [Header("Ikony")]
+    [SerializeField] private Sprite pencilSprite;
+    [SerializeField] private Sprite cheeseSprite;
+    [SerializeField] private Sprite mouseSprite;
+
+    private void OnEnable()
+    {
+        Refresh();
+    }
+
+    private void Start()
+    {
+        Refresh();
+    }
+
+    public void Refresh()
+    {
+        InventoryState.ClearSelectionIfItemNotInCurrentTime();
+
+        string itemId = InventoryState.GetItemAtSlot(slotIndex);
+        bool hasItem = !string.IsNullOrEmpty(itemId);
+
+        if (iconImage != null)
+        {
+            if (hasItem)
+            {
+                iconImage.sprite = GetSpriteForItem(itemId);
+                iconImage.enabled = true;
+            }
+            else
+            {
+                iconImage.sprite = null;
+                iconImage.enabled = false;
+            }
+        }
+
+        if (selectedHighlight != null)
+            selectedHighlight.SetActive(hasItem && InventoryState.IsSelected(itemId));
+
+        Debug.Log("[InventorySlotItemUI] slot=" + slotIndex + " item=" + itemId + " hasItem=" + hasItem);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        string itemId = InventoryState.GetItemAtSlot(slotIndex);
+
+        if (string.IsNullOrEmpty(itemId))
+            return;
+
+        if (InventoryState.IsSelected(itemId))
+            InventoryState.SetSelectedItem(InventoryState.None);
+        else
+            InventoryState.SetSelectedItem(itemId);
+
+        RefreshAllSlots();
+    }
+
+    private Sprite GetSpriteForItem(string itemId)
+    {
+        if (itemId == InventoryState.Pencil)
+            return pencilSprite;
+
+        if (itemId == InventoryState.Cheese)
+            return cheeseSprite;
+
+        if (itemId == InventoryState.Mouse)
+            return mouseSprite;
+
+        return null;
+    }
+
+    private void RefreshAllSlots()
+    {
+        InventorySlotItemUI[] all = FindObjectsOfType<InventorySlotItemUI>(true);
+
+        foreach (InventorySlotItemUI slot in all)
+            slot.Refresh();
+    }
+}
+/*using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class InventorySlotItemUI : MonoBehaviour
@@ -13,13 +106,10 @@ public class InventorySlotItemUI : MonoBehaviour
     {
         if (button == null)
             button = GetComponent<Button>();
-
         if (button != null)
             button.onClick.AddListener(OnClicked);
-
-        // ✅ Wczesne ostrzeżenie — wykryj brak podpięcia zanim cokolwiek pójdzie nie tak
         if (itemIcon == null)
-            Debug.LogError($"[InventorySlotItemUI] '{gameObject.name}' w scenie '{gameObject.scene.name}': pole 'Item Icon' nie jest podpięte w Inspektorze!", this);
+            Debug.LogError($"[InventorySlotItemUI] '{gameObject.name}': Item Icon nie podpięty!", this);
     }
 
     private void OnEnable()
@@ -29,7 +119,8 @@ public class InventorySlotItemUI : MonoBehaviour
 
     private void Start()
     {
-        Refresh();
+        // ✅ Tylko jedna coroutine która czeka końca klatki — po wszystkich Awake/Start/OnEnable
+        StartCoroutine(RefreshEndOfFrame());
     }
 
     private void OnDisable()
@@ -39,279 +130,73 @@ public class InventorySlotItemUI : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // ✅ Odświeżaj tylko gdy załadowana scena to ta sama co nasz obiekt
         if (scene.name != gameObject.scene.name) return;
-
-        Invoke(nameof(Refresh), 0.05f);
+        StartCoroutine(RefreshEndOfFrame());
     }
 
-    public void OnClicked()
+    // ✅ Czeka do końca klatki — wszystkie skrypty zdążą wykonać Awake/Start
+    // i InventoryState.Init() zdąży załadować dane z pliku
+    private IEnumerator RefreshEndOfFrame()
     {
-        if (!HasItem()) return;
-
-        if (InventoryState.IsSelected(itemId))
-            InventoryState.SetSelectedItem(InventoryState.None);
-        else
-            InventoryState.SetSelectedItem(itemId);
-
-        RefreshAll();
+        yield return new WaitForEndOfFrame();
+        Refresh();
     }
+
+private bool clickLocked = false;
+
+public void OnClicked()
+{
+    if (clickLocked) return;
+    StartCoroutine(ClickLockRoutine());
+
+    if (!HasItem())
+        return;
+
+    if (InventoryState.IsSelected(itemId))
+        InventoryState.SetSelectedItem(InventoryState.None);
+    else
+        InventoryState.SetSelectedItem(itemId);
+
+    RefreshAll();
+}
+
+private System.Collections.IEnumerator ClickLockRoutine()
+{
+    clickLocked = true;
+    yield return new WaitForSeconds(0.5f);
+    clickLocked = false;
+}
 
     public void Refresh()
     {
-        // ✅ Nie rób nic jeśli itemIcon nie podpięty — unikamy NullReferenceException
         if (itemIcon == null)
         {
-            Debug.LogError($"[InventorySlotItemUI] '{gameObject.name}': itemIcon = NULL — podepnij w Inspektorze!", this);
+            Debug.LogError($"[InventorySlotItemUI] '{gameObject.name}': itemIcon = NULL!", this);
             return;
         }
 
         bool hasItem = HasItem();
         bool selected = InventoryState.IsSelected(itemId);
 
-        Debug.Log($"[InventorySlotItemUI] {gameObject.name} | scene={gameObject.scene.name} | hasItem={hasItem} | selected={selected}");
+        Debug.Log($"[InventorySlotItemUI] Refresh() | obiekt='{gameObject.name}' | scena='{gameObject.scene.name}' | instanceID={itemIcon.GetInstanceID()} | hasItem={hasItem} | SetActive({hasItem})");
+
+        if (selectionHighlight != null)
+            selectionHighlight.SetActive(false);
 
         itemIcon.SetActive(hasItem);
 
         if (hasItem)
+        {
             itemIcon.transform.SetAsLastSibling();
 
-        if (selectionHighlight != null)
-            selectionHighlight.SetActive(hasItem && selected);
-    }
-
-    private bool HasItem()
-    {
-        if (itemId == "PENCIL")
-            return InventoryState.HasPencil();
-
-        return false;
-    }
-
-    private void RefreshAll()
-    {
-        InventorySlotItemUI[] all = FindObjectsByType<InventorySlotItemUI>(FindObjectsSortMode.None);
-        foreach (var slot in all)
-            slot.Refresh();
-    }
-}
-
-
-
-/*using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
-public class InventorySlotItemUI : MonoBehaviour
-{
-    [SerializeField] private string itemId = "PENCIL";
-    [SerializeField] private GameObject itemIcon;
-    [SerializeField] private GameObject selectionHighlight;
-    [SerializeField] private Button button;
-
-    private void Awake()
-    {
-        if (button == null)
-            button = GetComponent<Button>();
-
-        if (button != null)
-            button.onClick.AddListener(OnClicked);
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void Start()
-    {
-        Refresh();
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // ✅ POPRAWKA: Odświeżaj tylko gdy załadowana scena to ta sama co nasz obiekt
-        // Zapobiega sytuacji gdzie MenuScene triggeruje Refresh() na slocie z presentroom
-        if (scene.name != gameObject.scene.name)
-        {
-            Debug.Log($"[InventorySlotItemUI] OnSceneLoaded — ignoruję scenę '{scene.name}' (jesteśmy w '{gameObject.scene.name}')");
-            return;
-        }
-
-        // Małe opóźnienie — pozwól Unity dokończyć ładowanie sceny
-        Invoke(nameof(Refresh), 0.05f);
-    }
-
-    public void OnClicked()
-    {
-        if (!HasItem())
-            return;
-
-        if (InventoryState.IsSelected(itemId))
-            InventoryState.SetSelectedItem(InventoryState.None);
-        else
-            InventoryState.SetSelectedItem(itemId);
-
-        RefreshAll();
-    }
-
-    public void Refresh()
-    {
-        bool hasItem = HasItem();
-        bool selected = InventoryState.IsSelected(itemId);
-
-        Debug.Log($"[InventorySlotItemUI] {gameObject.name} | scene={gameObject.scene.name} | hasItem={hasItem} | selected={selected} | itemIcon={itemIcon?.name ?? "NULL"} | itemIcon.activeSelf przed={itemIcon?.activeSelf}");
-
-        if (itemIcon != null)
-        {
-            itemIcon.SetActive(hasItem);
-
-            if (hasItem)
-                itemIcon.transform.SetAsLastSibling();
-
-            Debug.Log($"[InventorySlotItemUI] itemIcon.SetActive({hasItem}) → activeSelf po={itemIcon.activeSelf}");
-        }
-        else
-        {
-            Debug.LogError($"[InventorySlotItemUI] {gameObject.name}: itemIcon NIE JEST PODPIĘTY w Inspektorze!");
-        }
-
-        if (selectionHighlight != null)
-            selectionHighlight.SetActive(hasItem && selected);
-    }
-
-    private bool HasItem()
-    {
-        if (itemId == "PENCIL")
-            return InventoryState.HasPencil();
-
-        return false;
-    }
-
-    private void RefreshAll()
-    {
-        InventorySlotItemUI[] all = FindObjectsByType<InventorySlotItemUI>(FindObjectsSortMode.None);
-        foreach (var slot in all)
-            slot.Refresh();
-    }
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
-public class InventorySlotItemUI : MonoBehaviour
-{
-    [SerializeField] private string itemId = "PENCIL";
-    [SerializeField] private GameObject itemIcon;
-    [SerializeField] private GameObject selectionHighlight;
-    [SerializeField] private Button button;
-
-    private void Awake()
-    {
-        if (button == null)
-            button = GetComponent<Button>();
-
-        if (button != null)
-            button.onClick.AddListener(OnClicked);
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
-        // ✅ POPRAWKA: Odświeżaj też przy OnEnable (nie tylko Start)
-        // bo przy powrocie do sceny Canvas może być reaktywowany
-        Refresh();
-    }
-
-    private void Start()
-    {
-        Refresh();
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Małe opóźnienie — pozwól Unity dokończyć ładowanie sceny zanim odświeżymy
-        Invoke(nameof(Refresh), 0.05f);
-    }
-
-    public void OnClicked()
-    {
-        if (!HasItem())
-            return;
-
-        if (InventoryState.IsSelected(itemId))
-            InventoryState.SetSelectedItem(InventoryState.None);
-        else
-            InventoryState.SetSelectedItem(itemId);
-
-        RefreshAll();
-    }
-
-    public void Refresh()
-    {
-        bool hasItem = HasItem();
-        bool selected = InventoryState.IsSelected(itemId);
-
-        Debug.Log($"[InventorySlotItemUI] {gameObject.name} | scene={SceneManager.GetActiveScene().name} | hasItem={hasItem} | selected={selected} | itemIcon={itemIcon?.name ?? "NULL"} | itemIcon.activeSelf przed={itemIcon?.activeSelf}");
-
-        if (itemIcon != null)
-        {
-            // ✅ POPRAWKA: Upewnij się że rodzic ikony też jest aktywny
-            if (!itemIcon.transform.parent.gameObject.activeInHierarchy)
+            var img = itemIcon.GetComponent<Image>();
+            if (img != null)
             {
-                Debug.LogWarning($"[InventorySlotItemUI] Rodzic itemIcon jest wyłączony! ({itemIcon.transform.parent.name})");
+                img.enabled = true;
+                var c = img.color;
+                c.a = 1f;
+                img.color = c;
             }
-
-            itemIcon.SetActive(hasItem);
-
-            // ✅ POPRAWKA: SetAsLastSibling żeby ikona była nad innymi elementami slotu
-            if (hasItem)
-                itemIcon.transform.SetAsLastSibling();
-
-            Debug.Log($"[InventorySlotItemUI] itemIcon.SetActive({hasItem}) → activeSelf po={itemIcon.activeSelf}");
-        }
-        else
-        {
-            Debug.LogError($"[InventorySlotItemUI] {gameObject.name}: itemIcon NIE JEST PODPIĘTY w Inspectorze!");
         }
 
         if (selectionHighlight != null)
@@ -320,9 +205,7 @@ public class InventorySlotItemUI : MonoBehaviour
 
     private bool HasItem()
     {
-        if (itemId == "PENCIL")
-            return InventoryState.HasPencil();
-
+        if (itemId == "PENCIL") return InventoryState.HasPencil();
         return false;
     }
 
@@ -338,111 +221,3 @@ public class InventorySlotItemUI : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
-public class InventorySlotItemUI : MonoBehaviour
-{
-    [SerializeField] private string itemId = "PENCIL";
-    [SerializeField] private GameObject itemIcon;
-    [SerializeField] private GameObject selectionHighlight;
-    [SerializeField] private Button button;
-
-    private void Awake()
-    {
-        if (button == null)
-            button = GetComponent<Button>();
-
-        if (button != null)
-            button.onClick.AddListener(OnClicked);
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void Start()
-    {
-        Refresh();
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Refresh();
-    }
-
-    public void OnClicked()
-    {
-        if (!HasItem())
-            return;
-
-        if (InventoryState.IsSelected(itemId))
-            InventoryState.SetSelectedItem(InventoryState.None);
-        else
-            InventoryState.SetSelectedItem(itemId);
-
-        RefreshAll();
-    }
-
-    public void Refresh()
-    {
-        bool hasItem = HasItem();
-        bool selected = InventoryState.IsSelected(itemId);
-
-        Debug.Log($"[InventorySlotItemUI] {gameObject.name} Refresh | hasItem={hasItem} | selected={selected}");
-
-        if (itemIcon != null)
-        {
-            itemIcon.SetActive(hasItem);
-            itemIcon.transform.SetAsLastSibling();
-        }
-
-        if (selectionHighlight != null)
-            selectionHighlight.SetActive(hasItem && selected);
-    }
-
-    private bool HasItem()
-    {
-        if (itemId == "PENCIL")
-            return InventoryState.HasPencil();
-
-        return false;
-    }
-
-    private void RefreshAll()
-    {
-        InventorySlotItemUI[] all = FindObjectsByType<InventorySlotItemUI>(FindObjectsSortMode.None);
-        foreach (var slot in all)
-            slot.Refresh();
-    }
-}*/

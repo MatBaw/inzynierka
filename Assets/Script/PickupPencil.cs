@@ -4,6 +4,65 @@ public class PickupPencil : MonoBehaviour
 {
     private void Start()
     {
+        if (InventoryState.HasPencil())
+            gameObject.SetActive(false);
+    }
+
+    public void PickUp()
+    {
+        if (InventoryState.HasPencil())
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        InventoryState.AddItemToPresent(InventoryState.Pencil);
+        RefreshInventoryUI();
+        gameObject.SetActive(false);
+    }
+
+    private void OnMouseDown()
+    {
+        PickUp();
+    }
+
+    private void RefreshInventoryUI()
+    {
+        InventorySlotItemUI[] all = FindObjectsOfType<InventorySlotItemUI>(true);
+        foreach (InventorySlotItemUI slot in all)
+            slot.Refresh();
+    }
+}
+/*using UnityEngine;
+
+public class PickupPencil : MonoBehaviour
+{
+    public void PickUp()
+    {
+        InventoryState.AddItemToPresent(InventoryState.Pencil);
+        RefreshInventoryUI();
+        gameObject.SetActive(false);
+    }
+
+    private void OnMouseDown()
+    {
+        PickUp();
+    }
+
+    private void RefreshInventoryUI()
+    {
+        InventorySlotItemUI[] all = FindObjectsOfType<InventorySlotItemUI>();
+        foreach (InventorySlotItemUI slot in all)
+            slot.Refresh();
+    }
+}*/
+
+/*using UnityEngine;
+
+public class PickupPencil : MonoBehaviour
+{
+    private void Start()
+    {
         // Jeśli ołówek już podniesiony (z poprzedniej sesji/sceny) — ukryj obiekt w świecie
         if (InventoryState.HasPencil())
         {
@@ -36,7 +95,7 @@ public class PickupPencil : MonoBehaviour
     {
         PickUp();
     }
-}
+}*/
 
 /*using UnityEngine;
 

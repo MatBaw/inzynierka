@@ -90,4 +90,11 @@ public class CameraZoomController : MonoBehaviour
 
         ZoomTarget = null;
     }
+
+    public void ZoomTo(Transform cameraPoint, Transform logicalTarget, float customZoomSize)
+{
+    ZoomTarget = logicalTarget;
+    StopAllCoroutines();
+    StartCoroutine(ZoomRoutine(cameraPoint, customZoomSize));
+}
 }

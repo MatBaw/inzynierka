@@ -19,7 +19,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] Button quitButton;
 
     [Header("=== SCENA GRY ===")]
-    [SerializeField] string gameSceneName = "SampleScene";
+    [SerializeField] string gameSceneName = "SlotScene";
 
     [Header("=== FADE ===")]
     [SerializeField] Image fadePanel;       // czarny panel do fade-in/out

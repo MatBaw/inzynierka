@@ -7,54 +7,49 @@ public class ClickOutsideToZoomOut : MonoBehaviour
     private Camera cam;
 
     [Header("Block zoom-out while this UI is open (optional)")]
-    [SerializeField] GameObject blockZoomOutWhenActive; // przeciągnij ClockPuzzleUI
+    [SerializeField] private GameObject blockZoomOutWhenActive;
 
-    // ten klik ma być zignorowany (klik, który zrobił zoom)
-    private bool ignoreNextClick = false;
+    [Header("Ignore clicks right after zoom-in")]
+    [SerializeField] private float ignoreClicksAfterZoomSeconds = 0.25f;
 
-    void Start()
+    private float ignoreClicksUntil = 0f;
+
+    private void Start()
     {
         zoomController = FindFirstObjectByType<CameraZoomController>();
         cam = Camera.main;
     }
 
-    // wołane z ZoomSzafka.ZoomIn()
+    // Wywołaj to zaraz po wejściu w zoom
     public void IgnoreNextClick()
     {
-        ignoreNextClick = true;
+        ignoreClicksUntil = Time.time + ignoreClicksAfterZoomSeconds;
     }
 
-    void Update()
+    // Opcjonalnie: ręczne ustawienie czasu blokady
+    public void IgnoreClicksFor(float seconds)
     {
-        if (zoomController == null) return;
+        ignoreClicksUntil = Time.time + seconds;
+    }
 
-        // ✅ Jeśli puzzle/UI jest otwarte -> NIE odzoomowuj w ogóle
+    private void Update()
+    {
+        if (zoomController == null || cam == null)
+            return;
+
         if (blockZoomOutWhenActive != null && blockZoomOutWhenActive.activeInHierarchy)
             return;
 
         if (!zoomController.IsZoomed)
-        {
-            // jak nie ma zooma, to i tak nie ma czego ignorować
-            ignoreNextClick = false;
             return;
-        }
 
-        // ✅ Klik w UI (przycisk) -> NIE odzoomowuj
+        // Ignoruj klik zaraz po wejściu w zoom
+        if (Time.time < ignoreClicksUntil)
+            return;
+
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
 
-        // jeśli mamy klik do zignorowania – „zjadamy” pierwszy click i wychodzimy
-        if (ignoreNextClick)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                // pierwszy klik po zoomie – tylko kasujemy flagę
-                ignoreNextClick = false;
-            }
-            return;
-        }
-
-        // od teraz każdy klik LPM może wywołać odzoomowanie
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouseWorld3D = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -64,20 +59,17 @@ public class ClickOutsideToZoomOut : MonoBehaviour
 
             if (zoomController.ZoomTarget != null)
             {
-                // 1) najpierw po colliderach (szuflady, drzwiczki)
                 RaycastHit2D hit = Physics2D.Raycast(mouseWorld2D, Vector2.zero);
 
                 if (hit.collider != null)
                 {
                     Transform t = hit.collider.transform;
-
                     if (t == zoomController.ZoomTarget || t.IsChildOf(zoomController.ZoomTarget))
                     {
                         clickedOnTarget = true;
                     }
                 }
 
-                // 2) jeśli colliderów nie ma, sprawdzamy, czy klik jest w boundsach sprite'ów
                 if (!clickedOnTarget)
                 {
                     SpriteRenderer[] renderers =
@@ -86,6 +78,7 @@ public class ClickOutsideToZoomOut : MonoBehaviour
                     foreach (var sr in renderers)
                     {
                         if (!sr.enabled) continue;
+
                         if (sr.bounds.Contains(mouseWorld3D))
                         {
                             clickedOnTarget = true;
@@ -104,10 +97,12 @@ public class ClickOutsideToZoomOut : MonoBehaviour
 
     public void ZoomOutNow()
     {
-        if (zoomController == null) return;
-        if (!zoomController.IsZoomed) return;
+        if (zoomController == null || !zoomController.IsZoomed)
+            return;
 
-        // ✅ jeśli UI jest aktywne, też blokujemy ręczne wywołanie
+        if (Time.time < ignoreClicksUntil)
+            return;
+
         if (blockZoomOutWhenActive != null && blockZoomOutWhenActive.activeInHierarchy)
             return;
 
@@ -119,6 +114,5 @@ public class ClickOutsideToZoomOut : MonoBehaviour
         }
 
         zoomController.ZoomOut();
-        ignoreNextClick = false;
     }
 }
