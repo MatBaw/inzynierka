@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GazeWorldOnlyToggle : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class GazeWorldOnlyToggle : MonoBehaviour
     [SerializeField] private GameObject gazeDot;
     [SerializeField] private GazeDotController gazeDotController;
     [SerializeField] private GazeCursorRingUI gazeCursorRingUI;
+
+    [Header("Ikona")]
+    [SerializeField] private Image iconImage;
+    [SerializeField] private Sprite eyeOpenSprite;
+    [SerializeField] private Sprite eyeClosedSprite;
 
     private const string PrefKey = "GazeWorldEnabled";
 
@@ -38,19 +44,21 @@ public class GazeWorldOnlyToggle : MonoBehaviour
 
     private void Apply(bool enabled)
     {
-        // świat
         if (gazeClick2D != null) gazeClick2D.enabled = enabled;
         if (gazeEdgeButtons != null) gazeEdgeButtons.enabled = enabled;
 
-        // UI zostaje zawsze aktywne
         if (gazeClickUI != null) gazeClickUI.enabled = true;
 
-        // wskaźnik też zostaje
         if (gazeDot != null) gazeDot.SetActive(true);
         if (gazeDotController != null) gazeDotController.enabled = true;
         if (gazeCursorRingUI != null) gazeCursorRingUI.enabled = true;
 
         if (!enabled && gazeCursorRingUI != null)
             gazeCursorRingUI.SetIdle();
+
+        if (iconImage != null)
+            iconImage.sprite = enabled ? eyeOpenSprite : eyeClosedSprite;
+
+        Debug.Log("[GazeWorldOnlyToggle] world enabled = " + enabled);
     }
 }

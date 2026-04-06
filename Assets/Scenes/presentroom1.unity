@@ -1054,7 +1054,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gazeDot: {fileID: 265020762}
-  eyeToggleButton: {fileID: 0}
+  toggleButtonImage: {fileID: 0}
+  eyeTrackerOnSprite: {fileID: 0}
+  eyeTrackerOffSprite: {fileID: 0}
+  forceDefaultOnAtStart: 1
   gazeClick2D: {fileID: 786533209}
   gazeClickUI: {fileID: 786533207}
   gazeEdgeButtons: {fileID: 786533206}
@@ -2584,10 +2587,10 @@ GameObject:
   - component: {fileID: 786533209}
   - component: {fileID: 786533208}
   - component: {fileID: 786533207}
+  - component: {fileID: 786533211}
   - component: {fileID: 786533206}
   - component: {fileID: 786533205}
   - component: {fileID: 786533204}
-  - component: {fileID: 786533211}
   m_Layer: 0
   m_Name: GazeDwellSystem
   m_TagString: Untagged
@@ -4217,7 +4220,6 @@ GameObject:
   - component: {fileID: 1348943691}
   - component: {fileID: 1348943690}
   - component: {fileID: 1348943689}
-  - component: {fileID: 1348943688}
   - component: {fileID: 1348943687}
   - component: {fileID: 1348943692}
   m_Layer: 5
@@ -4279,19 +4281,6 @@ MonoBehaviour:
   OnGazeExit:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1348943688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348943685}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b8c8db2b83786b4d88cc391b4fe53e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuSceneName: MenuScene
 --- !u!114 &1348943689
 MonoBehaviour:
   m_ObjectHideFlags: 0
