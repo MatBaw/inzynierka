@@ -3,15 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-/// <summary>
-/// Główny skrypt menu startowego.
-/// 
-/// SETUP:
-/// 1. Utwórz nową scenę "MenuScene" (File → New Scene)
-/// 2. Dodaj ten skrypt na pusty GameObject "MenuManager"
-/// 3. Podepnij referencje w Inspectorze
-/// 4. W Build Settings dodaj MenuScene (index 0) i SampleScene (index 1)
-/// </summary>
+
 public class MainMenuController : MonoBehaviour
 {
     [Header("=== PRZYCISKI ===")]
@@ -22,22 +14,20 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] string gameSceneName = "SlotScene";
 
     [Header("=== FADE ===")]
-    [SerializeField] Image fadePanel;       // czarny panel do fade-in/out
+    [SerializeField] Image fadePanel;
     [SerializeField] float fadeDuration = 1f;
 
     [Header("=== ANIMOWANE ELEMENTY (opcjonalne) ===")]
-    [SerializeField] CanvasGroup menuGroup; // cała grupa menu do fade-in
+    [SerializeField] CanvasGroup menuGroup;
 
     void Start()
     {
-        // Podepnij przyciski
         if (startButton != null)
             startButton.onClick.AddListener(OnStartClicked);
 
         if (quitButton != null)
             quitButton.onClick.AddListener(OnQuitClicked);
 
-        // Fade in przy starcie menu
         StartCoroutine(FadeIn());
     }
 
@@ -53,7 +43,6 @@ public class MainMenuController : MonoBehaviour
 
     IEnumerator LoadGameWithFade()
     {
-        // Zablokuj przyciski podczas przejścia
         SetButtonsInteractable(false);
 
         yield return StartCoroutine(FadeOut());

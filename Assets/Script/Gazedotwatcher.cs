@@ -1,8 +1,5 @@
 using UnityEngine;
 
-/// TYMCZASOWY skrypt diagnostyczny.
-/// Dodaj na GazeDot w każdej scenie.
-/// Sprawdź Player.log po uruchomieniu buildu.
 public class GazeDotWatcher : MonoBehaviour
 {
     void Awake()
@@ -22,7 +19,6 @@ public class GazeDotWatcher : MonoBehaviour
 
     void OnDisable()
     {
-        // To pokaże nam kto wyłącza GazeDot i skąd
         Debug.Log($"[GazeDotWatcher] OnDisable — kto to zrobił:\n{new System.Diagnostics.StackTrace()}");
     }
 }

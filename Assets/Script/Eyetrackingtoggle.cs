@@ -3,21 +3,21 @@ using UnityEngine.UI;
 
 public class EyeTrackingToggle : MonoBehaviour
 {
-    [Header("=== KOMPONENTY DO WYŁĄCZANIA ===")]
+    [Header("KOMPONENTY DO WYŁĄCZANIA")]
     [SerializeField] GazeDwellClick2D dwellClick2D;
     [SerializeField] GazeDwellClickUI dwellClickUI;
     [SerializeField] GazeEdgeButtons gazeEdgeButtons;
 
-    [Header("=== UI IKONKI ===")]
+    [Header("UI IKONKI")]
     [SerializeField] Sprite eyeOpenSprite;
     [SerializeField] Sprite eyeClosedSprite;
     [SerializeField] Image buttonImage;
 
-    [Header("=== KOLORY PRZYCISKU ===")]
+    [Header("KOLORY PRZYCISKU")]
     [SerializeField] Color activeColor   = new Color(0.3f, 0.8f, 1f, 0.9f);
     [SerializeField] Color inactiveColor = new Color(0.5f, 0.5f, 0.5f, 0.7f);
 
-    [Header("=== CURSOR UI ===")]
+    [Header("CURSOR UI")]
     [SerializeField] GazeCursorRingUI cursorUI;
 
     [Header("=== DWELL CZAS TOGGLE ===")]
@@ -43,7 +43,6 @@ public class EyeTrackingToggle : MonoBehaviour
     void Start()
     {
         isEyeTrackingActive = true;
-        // Tylko aktualizuj wygląd przycisku — NIE dotykamy cursorUI!
         UpdateButtonVisuals();
         Debug.Log("[EyeToggle] Start — tracking WŁĄCZONY");
     }
@@ -62,7 +61,6 @@ public class EyeTrackingToggle : MonoBehaviour
         dwellTimer = 0f;
         isGazingAtButton = false;
 
-        // Tylko przy wyłączeniu resetujemy celownik
         if (!isEyeTrackingActive)
             cursorUI?.SetIdle();
 
@@ -71,7 +69,6 @@ public class EyeTrackingToggle : MonoBehaviour
 
     void Update()
     {
-        // Obsługuj ręczny dwell TYLKO gdy tracking wyłączony
         if (!isEyeTrackingActive)
             HandleManualDwellWhenDisabled();
     }

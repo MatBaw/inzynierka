@@ -5,7 +5,6 @@ public static class ClockState
     public static int Hour { get; private set; } = 0;
     public static int Minute { get; private set; } = 0;
 
-    // ✅ czy puzzle zostało rozwiązane
     public static bool IsSolved { get; private set; } = false;
 
     public static void Set(int hour, int minute)
@@ -23,5 +22,18 @@ public static class ClockState
     public static void MarkSolved()
     {
         IsSolved = true;
+    }
+
+    public static void SetSolved(bool value)
+    {
+        IsSolved = value;
+    }
+
+    public static void ResetState()
+    {
+        HasValue = false;
+        Hour = 0;
+        Minute = 0;
+        IsSolved = false;
     }
 }

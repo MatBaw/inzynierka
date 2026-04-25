@@ -27,13 +27,11 @@ public class CameraZoomController : MonoBehaviour
         defaultPos = cam.transform.position;
     }
 
-    // OLD behaviour (still works): zoom using default zoomSize
     public void ZoomTo(Transform target)
     {
         ZoomTo(target, zoomSize);
     }
 
-    // NEW behaviour: zoom using per-object size
     public void ZoomTo(Transform target, float customZoomSize)
     {
         ZoomTarget = target;

@@ -7,6 +7,7 @@ public class PaperZoomOpenClose : MonoBehaviour
     [SerializeField] private CameraZoomController zoomController;
     [SerializeField] private ClickOutsideToZoomOut clickOutsideToZoomOut;
     [SerializeField] private GameObject revealHitbox;
+    [SerializeField] private GameObject closeZoomHitbox;
 
     [Header("Wyłączane po zoomie")]
     [SerializeField] private Collider2D rootCollider;
@@ -37,16 +38,31 @@ public class PaperZoomOpenClose : MonoBehaviour
         if (revealHitbox != null)
             revealHitbox.SetActive(false);
 
+        if (closeZoomHitbox != null)
+            closeZoomHitbox.SetActive(false);
+
         IsZoomedOnPaper = false;
+    }
+
+    public void TryOpenZoomByGaze()
+    {
+        if (IsZoomedOnPaper)
+            return;
+
+        if (zoomTarget != null)
+        {
+            zoomTarget.ZoomNow();
+        }
+        else
+        {
+            Debug.LogWarning("[PaperZoom] Brak ZoomTarget.");
+        }
     }
 
     public void OpenZoom()
     {
         if (IsZoomedOnPaper)
             return;
-
-        // NIE wywołujemy tutaj zoomTarget.ZoomNow(),
-        // bo ta metoda jest odpalana już przez event On Zoom()
 
         if (clickOutsideToZoomOut != null)
             clickOutsideToZoomOut.IgnoreNextClick();
@@ -56,6 +72,9 @@ public class PaperZoomOpenClose : MonoBehaviour
 
         if (revealHitbox != null)
             revealHitbox.SetActive(true);
+
+        if (closeZoomHitbox != null)
+            closeZoomHitbox.SetActive(true);
 
         if (rootCollider != null)
             rootCollider.enabled = false;
@@ -71,6 +90,9 @@ public class PaperZoomOpenClose : MonoBehaviour
     {
         if (revealHitbox != null)
             revealHitbox.SetActive(false);
+
+        if (closeZoomHitbox != null)
+            closeZoomHitbox.SetActive(false);
 
         if (rootCollider != null)
             rootCollider.enabled = true;

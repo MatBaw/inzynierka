@@ -1,0 +1,2691 @@
+fileFormatVersion: 2
+guid: b5e0e64b966180048ba3f1ba59a2f1c0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3482700072439578092
+    second: przyciski_tlo_0
+  - first:
+      213: 2993915917425990971
+    second: przyciski_tlo_1
+  - first:
+      213: -6782888426263672924
+    second: przyciski_tlo_2
+  - first:
+      213: 6605044735429145637
+    second: przyciski_tlo_3
+  - first:
+      213: 6326976812000445073
+    second: przyciski_tlo_4
+  - first:
+      213: 378793247433438341
+    second: przyciski_tlo_5
+  - first:
+      213: 2231981459441897964
+    second: przyciski_tlo_6
+  - first:
+      213: -4458414042922673782
+    second: przyciski_tlo_7
+  - first:
+      213: 4860753561611171499
+    second: przyciski_tlo_8
+  - first:
+      213: -6750223117189919861
+    second: przyciski_tlo_9
+  - first:
+      213: -8850688136087444188
+    second: przyciski_tlo_10
+  - first:
+      213: 6155484421352045396
+    second: przyciski_tlo_11
+  - first:
+      213: -8089967198713518034
+    second: przyciski_tlo_12
+  - first:
+      213: 6869684527372891489
+    second: przyciski_tlo_13
+  - first:
+      213: -1515476814088508188
+    second: przyciski_tlo_14
+  - first:
+      213: 2467041347713514836
+    second: przyciski_tlo_15
+  - first:
+      213: 6123970468838091765
+    second: przyciski_tlo_16
+  - first:
+      213: 7560978891081217144
+    second: przyciski_tlo_17
+  - first:
+      213: -4689621648547099783
+    second: przyciski_tlo_18
+  - first:
+      213: -706910885392571201
+    second: przyciski_tlo_19
+  - first:
+      213: 8315791643052004684
+    second: przyciski_tlo_20
+  - first:
+      213: 4499410183896079012
+    second: przyciski_tlo_21
+  - first:
+      213: -2221817035593427903
+    second: przyciski_tlo_22
+  - first:
+      213: 1178741289779113751
+    second: przyciski_tlo_23
+  - first:
+      213: -3441344885579459252
+    second: przyciski_tlo_24
+  - first:
+      213: 6357349475782046791
+    second: przyciski_tlo_25
+  - first:
+      213: -8519283725610924115
+    second: przyciski_tlo_26
+  - first:
+      213: 6349014396990018186
+    second: przyciski_tlo_27
+  - first:
+      213: 3571340108339611341
+    second: przyciski_tlo_28
+  - first:
+      213: -6251206997415761621
+    second: przyciski_tlo_29
+  - first:
+      213: 9050171206874977482
+    second: przyciski_tlo_30
+  - first:
+      213: 2795650172275534408
+    second: przyciski_tlo_31
+  - first:
+      213: 6279909643466690480
+    second: przyciski_tlo_32
+  - first:
+      213: -664901401533719953
+    second: przyciski_tlo_33
+  - first:
+      213: 1036262045241929980
+    second: przyciski_tlo_34
+  - first:
+      213: -6753934530953577621
+    second: przyciski_tlo_35
+  - first:
+      213: 4660616991892823269
+    second: przyciski_tlo_36
+  - first:
+      213: -5996187831647258242
+    second: przyciski_tlo_37
+  - first:
+      213: 5607982424339000247
+    second: przyciski_tlo_38
+  - first:
+      213: -379268295204718881
+    second: przyciski_tlo_39
+  - first:
+      213: 239721549012660484
+    second: przyciski_tlo_40
+  - first:
+      213: -6140511424221975559
+    second: przyciski_tlo_41
+  - first:
+      213: -276205049892634073
+    second: przyciski_tlo_42
+  - first:
+      213: -3171410821696794822
+    second: przyciski_tlo_43
+  - first:
+      213: -1948065792865122213
+    second: przyciski_tlo_44
+  - first:
+      213: -6451324793652787230
+    second: przyciski_tlo_45
+  - first:
+      213: 8996836269689933088
+    second: przyciski_tlo_46
+  - first:
+      213: 1037465303209514081
+    second: przyciski_tlo_47
+  - first:
+      213: 7853856931381553863
+    second: przyciski_tlo_48
+  - first:
+      213: 1805022237412918802
+    second: przyciski_tlo_49
+  - first:
+      213: 2528379287366660440
+    second: przyciski_tlo_50
+  - first:
+      213: -5115407517916944433
+    second: przyciski_tlo_51
+  - first:
+      213: -4565931306609453812
+    second: przyciski_tlo_52
+  - first:
+      213: -4829895996164535696
+    second: przyciski_tlo_53
+  - first:
+      213: 7756325281677368111
+    second: przyciski_tlo_54
+  - first:
+      213: 6809293651795960767
+    second: przyciski_tlo_55
+  - first:
+      213: -1193121948581451973
+    second: przyciski_tlo_56
+  - first:
+      213: -7204075165696893142
+    second: przyciski_tlo_57
+  - first:
+      213: -4306646574648224272
+    second: przyciski_tlo_58
+  - first:
+      213: 4467124492435559684
+    second: przyciski_tlo_59
+  - first:
+      213: -7510965514860058136
+    second: przyciski_tlo_60
+  - first:
+      213: 4592975053599649763
+    second: przyciski_tlo_61
+  - first:
+      213: 5057446363480108847
+    second: przyciski_tlo_62
+  - first:
+      213: 7547718474981855214
+    second: przyciski_tlo_63
+  - first:
+      213: -5496047988476713449
+    second: przyciski_tlo_64
+  - first:
+      213: 7542902862589196644
+    second: przyciski_tlo_65
+  - first:
+      213: 1048175951280944887
+    second: przyciski_tlo_66
+  - first:
+      213: 5078070916748513218
+    second: przyciski_tlo_67
+  - first:
+      213: 5547969889856031408
+    second: przyciski_tlo_68
+  - first:
+      213: 3340773020500356285
+    second: przyciski_tlo_69
+  - first:
+      213: -5812292253064695568
+    second: przyciski_tlo_70
+  - first:
+      213: 8758419734556370201
+    second: przyciski_tlo_71
+  - first:
+      213: -7410838654721156210
+    second: przyciski_tlo_72
+  - first:
+      213: -9081622824401613120
+    second: przyciski_tlo_73
+  - first:
+      213: 6827793742788333859
+    second: przyciski_tlo_74
+  - first:
+      213: 3700479139418666026
+    second: przyciski_tlo_75
+  - first:
+      213: -3647153695374751842
+    second: przyciski_tlo_76
+  - first:
+      213: -1886347178405621728
+    second: przyciski_tlo_77
+  - first:
+      213: -1634450015779064781
+    second: przyciski_tlo_78
+  - first:
+      213: -3514665276282458888
+    second: przyciski_tlo_79
+  - first:
+      213: 2506118537036384014
+    second: przyciski_tlo_80
+  - first:
+      213: 7086261469774500060
+    second: przyciski_tlo_81
+  - first:
+      213: 4854536387782577472
+    second: przyciski_tlo_82
+  - first:
+      213: 5122592179751182749
+    second: przyciski_tlo_83
+  - first:
+      213: 4135816456862919561
+    second: przyciski_tlo_84
+  - first:
+      213: 116719310972888528
+    second: przyciski_tlo_85
+  - first:
+      213: -7500237756077903606
+    second: przyciski_tlo_86
+  - first:
+      213: -5631812236746536182
+    second: przyciski_tlo_87
+  - first:
+      213: -5058107525443228550
+    second: przyciski_tlo_88
+  - first:
+      213: 3339373057699637068
+    second: przyciski_tlo_89
+  - first:
+      213: 3450532881022792556
+    second: przyciski_tlo_90
+  - first:
+      213: -6427991239547688230
+    second: przyciski_tlo_91
+  - first:
+      213: -5688545481252133664
+    second: przyciski_tlo_92
+  - first:
+      213: -6175726121475622075
+    second: przyciski_tlo_93
+  - first:
+      213: -6580538537285058601
+    second: przyciski_tlo_94
+  - first:
+      213: 4637682529730356846
+    second: przyciski_tlo_95
+  - first:
+      213: -4906128965841434635
+    second: przyciski_tlo_96
+  - first:
+      213: -8608898014110725461
+    second: przyciski_tlo_97
+  - first:
+      213: -8850601100965458442
+    second: przyciski_tlo_98
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: przyciski_tlo_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 672
+        width: 9
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cedfcf48349055030800000000000000
+      internalID: 3482700072439578092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 692
+        width: 28
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3d50991aa68c8920800000000000000
+      internalID: 2993915917425990971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_2
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 679
+        width: 61
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a70271e9e65ed1a0800000000000000
+      internalID: -6782888426263672924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_3
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 659
+        width: 39
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52471dc1135d9ab50800000000000000
+      internalID: 6605044735429145637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_4
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 679
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1928b6583efedc750800000000000000
+      internalID: 6326976812000445073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_5
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 656
+        width: 25
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 584369c937eb14500800000000000000
+      internalID: 378793247433438341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_6
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 680
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce1da43df4799fe10800000000000000
+      internalID: 2231981459441897964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_7
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 679
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a891bf5bc088022c0800000000000000
+      internalID: -4458414042922673782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_8
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 681
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba67c846c9dd47340800000000000000
+      internalID: 4860753561611171499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_9
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 658
+        width: 58
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8bc341d6d36252a0800000000000000
+      internalID: -6750223117189919861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_10
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 680
+        width: 35
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4256ebe780a0c2580800000000000000
+      internalID: -8850688136087444188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_11
+      rect:
+        serializedVersion: 2
+        x: 1049
+        y: 681
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45bb323d77cac6550800000000000000
+      internalID: 6155484421352045396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_12
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 670
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e286e1cf1b9aabf80800000000000000
+      internalID: -8089967198713518034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_13
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 679
+        width: 41
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 165fe053ea5065f50800000000000000
+      internalID: 6869684527372891489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_14
+      rect:
+        serializedVersion: 2
+        x: 1211
+        y: 677
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ece9eeedd1f7fae0800000000000000
+      internalID: -1515476814088508188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_15
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 679
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d3aa8e801bc3220800000000000000
+      internalID: 2467041347713514836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_16
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 681
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fba31af1b6bcf450800000000000000
+      internalID: 6123970468838091765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_17
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 677
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8747f1ddd3efde860800000000000000
+      internalID: 7560978891081217144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_18
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 679
+        width: 31
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97b4e5315fd1beeb0800000000000000
+      internalID: -4689621648547099783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_19
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 680
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb4a15c8b4c8036f0800000000000000
+      internalID: -706910885392571201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_20
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 681
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c45d64eb070a76370800000000000000
+      internalID: 8315791643052004684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_21
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 681
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aa96ed29bd117e30800000000000000
+      internalID: 4499410183896079012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_22
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 680
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 144da858d258a21e0800000000000000
+      internalID: -2221817035593427903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_23
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 680
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71fae5335fabb5010800000000000000
+      internalID: 1178741289779113751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_24
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 679
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c45dd614f03ed30d0800000000000000
+      internalID: -3441344885579459252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_25
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 661
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74431016aa7d93850800000000000000
+      internalID: 6357349475782046791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_26
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 681
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da7c132b69c65c980800000000000000
+      internalID: -8519283725610924115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_27
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 680
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a825e6e94fa3c1850800000000000000
+      internalID: 6349014396990018186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_28
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 680
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc600b128e2ff8130800000000000000
+      internalID: 3571340108339611341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_29
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 681
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b29e89d2b504f39a0800000000000000
+      internalID: -6251206997415761621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_30
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 674
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4504643caa89d70800000000000000
+      internalID: 9050171206874977482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_31
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 680
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84a2eba05052cc620800000000000000
+      internalID: 2795650172275534408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_32
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 680
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bfc1606c88b62750800000000000000
+      internalID: 6279909643466690480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_33
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 680
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6a5ce6b2bbc5c6f0800000000000000
+      internalID: -664901401533719953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_34
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 680
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf07ddcf6da816e00800000000000000
+      internalID: 1036262045241929980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_35
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 679
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6b7446f3543542a0800000000000000
+      internalID: -6753934530953577621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_36
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 670
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ecdbeb0676dda040800000000000000
+      internalID: 4660616991892823269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_37
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 682
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e793520bfe249cca0800000000000000
+      internalID: -5996187831647258242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_38
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 681
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bb2c557d4e83dd40800000000000000
+      internalID: 5607982424339000247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_39
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 681
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd631c5be719cbaf0800000000000000
+      internalID: -379268295204718881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_40
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 681
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 401f7ed8a79a35300800000000000000
+      internalID: 239721549012660484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_41
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 654
+        width: 87
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fb650cb46588caa0800000000000000
+      internalID: -6140511424221975559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_42
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 680
+        width: 19
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7220bf378f8ba2cf0800000000000000
+      internalID: -276205049892634073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_43
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 680
+        width: 21
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3fcee719a2ecf3d0800000000000000
+      internalID: -3171410821696794822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_44
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 680
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b584f219b7417f4e0800000000000000
+      internalID: -1948065792865122213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_45
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 660
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e7c7afd74a4876a0800000000000000
+      internalID: -6451324793652787230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_46
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 681
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02d08358bee2bdc70800000000000000
+      internalID: 8996836269689933088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_47
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 681
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16498905231d56e00800000000000000
+      internalID: 1037465303209514081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_48
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 681
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7caacbf74418efc60800000000000000
+      internalID: 7853856931381553863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_49
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 680
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2168da8592abc0910800000000000000
+      internalID: 1805022237412918802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_50
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 680
+        width: 19
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 851f1f0e09b961320800000000000000
+      internalID: 2528379287366660440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_51
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 680
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc7a23d07fb6209b0800000000000000
+      internalID: -5115407517916944433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_52
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 681
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0555b00bad82a0c0800000000000000
+      internalID: -4565931306609453812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_53
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 679
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07a088e6e23c8fcb0800000000000000
+      internalID: -4829895996164535696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_54
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 680
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2bd2c8bfb004ab60800000000000000
+      internalID: 7756325281677368111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_55
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 659
+        width: 35
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb3ee96cf787f7e50800000000000000
+      internalID: 6809293651795960767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_56
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 680
+        width: 24
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b37a411c8ed217fe0800000000000000
+      internalID: -1193121948581451973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_57
+      rect:
+        serializedVersion: 2
+        x: 991
+        y: 659
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f5c6d3ecbf50c90800000000000000
+      internalID: -7204075165696893142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_58
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 682
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f590f802c7bb34c0800000000000000
+      internalID: -4306646574648224272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_59
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 680
+        width: 27
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 405911bde0a6efd30800000000000000
+      internalID: 4467124492435559684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_60
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 681
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e9ae86b8a0b3c790800000000000000
+      internalID: -7510965514860058136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_61
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 681
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3efa9040a768dbf30800000000000000
+      internalID: 4592975053599649763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_62
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 664
+        width: 55
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2fa2dd0ca8af2640800000000000000
+      internalID: 5057446363480108847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_63
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 657
+        width: 116
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eef42f5a6f1eeb860800000000000000
+      internalID: 7547718474981855214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_64
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 659
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 716685a497d1ab3b0800000000000000
+      internalID: -5496047988476713449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_65
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 662
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 469f7e38036cda860800000000000000
+      internalID: 7542902862589196644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_66
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 662
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f63536697edb8e00800000000000000
+      internalID: 1048175951280944887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_67
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 660
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cf8901189ee87640800000000000000
+      internalID: 5078070916748513218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_68
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 661
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ba8e6d68395efc40800000000000000
+      internalID: 5547969889856031408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_69
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 658
+        width: 29
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbce12aac5fcc5e20800000000000000
+      internalID: 3340773020500356285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_70
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 661
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f0f25d9df6965fa0800000000000000
+      internalID: -5812292253064695568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_71
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 661
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 915e00038582c8970800000000000000
+      internalID: 8758419734556370201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_72
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 656
+        width: 35
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8b9c910289672990800000000000000
+      internalID: -7410838654721156210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_73
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 660
+        width: 23
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ce467f582897f180800000000000000
+      internalID: -9081622824401613120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_74
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 657
+        width: 29
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 321988edb3231ce50800000000000000
+      internalID: 6827793742788333859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_75
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 661
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a24facbdb2eba5330800000000000000
+      internalID: 3700479139418666026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_76
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 658
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e974fe99905b26dc0800000000000000
+      internalID: -3647153695374751842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_77
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 658
+        width: 21
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 020921c4c3952d5e0800000000000000
+      internalID: -1886347178405621728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_78
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 661
+        width: 27
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3347b5ece544159e0800000000000000
+      internalID: -1634450015779064781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_79
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 658
+        width: 53
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fca8ce7d86693fc0800000000000000
+      internalID: -3514665276282458888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_80
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 660
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e07431d088587c220800000000000000
+      internalID: 2506118537036384014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_81
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 658
+        width: 53
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0527b1345775260800000000000000
+      internalID: 7086261469774500060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_82
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 659
+        width: 44
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04d0dfecf17ce5340800000000000000
+      internalID: 4854536387782577472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_83
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 661
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d916343627a171740800000000000000
+      internalID: 5122592179751182749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_84
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 661
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b678fa72f556930800000000000000
+      internalID: 4135816456862919561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_85
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 659
+        width: 31
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d5a7fc489bae9100800000000000000
+      internalID: 116719310972888528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_86
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 656
+        width: 31
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a01f002bf7dc9e790800000000000000
+      internalID: -7500237756077903606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_87
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 657
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0b460bfb98c7d1b0800000000000000
+      internalID: -5631812236746536182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_88
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 661
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7ce93e210efdc9b0800000000000000
+      internalID: -5058107525443228550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_89
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 658
+        width: 28
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4762bc6a16d75e20800000000000000
+      internalID: 3339373057699637068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_90
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 661
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c633b23af51c2ef20800000000000000
+      internalID: 3450532881022792556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_91
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 658
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adaef6b46003bc6a0800000000000000
+      internalID: -6427991239547688230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_92
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 661
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e42055260a3e01b0800000000000000
+      internalID: -5688545481252133664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_93
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 660
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54b385b10d96b4aa0800000000000000
+      internalID: -6175726121475622075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_94
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 660
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dffa56c01b3da4a0800000000000000
+      internalID: -6580538537285058601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_95
+      rect:
+        serializedVersion: 2
+        x: 1084
+        y: 660
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e66ec9570bb5c5040800000000000000
+      internalID: 4637682529730356846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_96
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 660
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f744c803bde9ebb0800000000000000
+      internalID: -4906128965841434635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_97
+      rect:
+        serializedVersion: 2
+        x: 1112
+        y: 657
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baa4d593edc078880800000000000000
+      internalID: -8608898014110725461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: przyciski_tlo_98
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1229
+        height: 656
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fdc540f0395c2580800000000000000
+      internalID: -8850601100965458442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      przyciski_tlo_0: 3482700072439578092
+      przyciski_tlo_1: 2993915917425990971
+      przyciski_tlo_10: -8850688136087444188
+      przyciski_tlo_11: 6155484421352045396
+      przyciski_tlo_12: -8089967198713518034
+      przyciski_tlo_13: 6869684527372891489
+      przyciski_tlo_14: -1515476814088508188
+      przyciski_tlo_15: 2467041347713514836
+      przyciski_tlo_16: 6123970468838091765
+      przyciski_tlo_17: 7560978891081217144
+      przyciski_tlo_18: -4689621648547099783
+      przyciski_tlo_19: -706910885392571201
+      przyciski_tlo_2: -6782888426263672924
+      przyciski_tlo_20: 8315791643052004684
+      przyciski_tlo_21: 4499410183896079012
+      przyciski_tlo_22: -2221817035593427903
+      przyciski_tlo_23: 1178741289779113751
+      przyciski_tlo_24: -3441344885579459252
+      przyciski_tlo_25: 6357349475782046791
+      przyciski_tlo_26: -8519283725610924115
+      przyciski_tlo_27: 6349014396990018186
+      przyciski_tlo_28: 3571340108339611341
+      przyciski_tlo_29: -6251206997415761621
+      przyciski_tlo_3: 6605044735429145637
+      przyciski_tlo_30: 9050171206874977482
+      przyciski_tlo_31: 2795650172275534408
+      przyciski_tlo_32: 6279909643466690480
+      przyciski_tlo_33: -664901401533719953
+      przyciski_tlo_34: 1036262045241929980
+      przyciski_tlo_35: -6753934530953577621
+      przyciski_tlo_36: 4660616991892823269
+      przyciski_tlo_37: -5996187831647258242
+      przyciski_tlo_38: 5607982424339000247
+      przyciski_tlo_39: -379268295204718881
+      przyciski_tlo_4: 6326976812000445073
+      przyciski_tlo_40: 239721549012660484
+      przyciski_tlo_41: -6140511424221975559
+      przyciski_tlo_42: -276205049892634073
+      przyciski_tlo_43: -3171410821696794822
+      przyciski_tlo_44: -1948065792865122213
+      przyciski_tlo_45: -6451324793652787230
+      przyciski_tlo_46: 8996836269689933088
+      przyciski_tlo_47: 1037465303209514081
+      przyciski_tlo_48: 7853856931381553863
+      przyciski_tlo_49: 1805022237412918802
+      przyciski_tlo_5: 378793247433438341
+      przyciski_tlo_50: 2528379287366660440
+      przyciski_tlo_51: -5115407517916944433
+      przyciski_tlo_52: -4565931306609453812
+      przyciski_tlo_53: -4829895996164535696
+      przyciski_tlo_54: 7756325281677368111
+      przyciski_tlo_55: 6809293651795960767
+      przyciski_tlo_56: -1193121948581451973
+      przyciski_tlo_57: -7204075165696893142
+      przyciski_tlo_58: -4306646574648224272
+      przyciski_tlo_59: 4467124492435559684
+      przyciski_tlo_6: 2231981459441897964
+      przyciski_tlo_60: -7510965514860058136
+      przyciski_tlo_61: 4592975053599649763
+      przyciski_tlo_62: 5057446363480108847
+      przyciski_tlo_63: 7547718474981855214
+      przyciski_tlo_64: -5496047988476713449
+      przyciski_tlo_65: 7542902862589196644
+      przyciski_tlo_66: 1048175951280944887
+      przyciski_tlo_67: 5078070916748513218
+      przyciski_tlo_68: 5547969889856031408
+      przyciski_tlo_69: 3340773020500356285
+      przyciski_tlo_7: -4458414042922673782
+      przyciski_tlo_70: -5812292253064695568
+      przyciski_tlo_71: 8758419734556370201
+      przyciski_tlo_72: -7410838654721156210
+      przyciski_tlo_73: -9081622824401613120
+      przyciski_tlo_74: 6827793742788333859
+      przyciski_tlo_75: 3700479139418666026
+      przyciski_tlo_76: -3647153695374751842
+      przyciski_tlo_77: -1886347178405621728
+      przyciski_tlo_78: -1634450015779064781
+      przyciski_tlo_79: -3514665276282458888
+      przyciski_tlo_8: 4860753561611171499
+      przyciski_tlo_80: 2506118537036384014
+      przyciski_tlo_81: 7086261469774500060
+      przyciski_tlo_82: 4854536387782577472
+      przyciski_tlo_83: 5122592179751182749
+      przyciski_tlo_84: 4135816456862919561
+      przyciski_tlo_85: 116719310972888528
+      przyciski_tlo_86: -7500237756077903606
+      przyciski_tlo_87: -5631812236746536182
+      przyciski_tlo_88: -5058107525443228550
+      przyciski_tlo_89: 3339373057699637068
+      przyciski_tlo_9: -6750223117189919861
+      przyciski_tlo_90: 3450532881022792556
+      przyciski_tlo_91: -6427991239547688230
+      przyciski_tlo_92: -5688545481252133664
+      przyciski_tlo_93: -6175726121475622075
+      przyciski_tlo_94: -6580538537285058601
+      przyciski_tlo_95: 4637682529730356846
+      przyciski_tlo_96: -4906128965841434635
+      przyciski_tlo_97: -8608898014110725461
+      przyciski_tlo_98: -8850601100965458442
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

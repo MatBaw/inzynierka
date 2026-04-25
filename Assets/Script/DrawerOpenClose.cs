@@ -34,7 +34,6 @@ public class DrawerOpenClose : MonoBehaviour
     {
         if (isMoving) return;
 
-        // Jeśli klikam otwartą szufladę -> zamknij ją
         if (isOpen)
         {
             CloseDrawer();
@@ -42,7 +41,6 @@ public class DrawerOpenClose : MonoBehaviour
             return;
         }
 
-        // Jeśli inna szuflada jest otwarta -> zamknij tamtą
         if (currentlyOpenDrawer != null && currentlyOpenDrawer != this)
         {
             currentlyOpenDrawer.CloseDrawer();

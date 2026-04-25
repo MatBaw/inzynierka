@@ -11,7 +11,6 @@ public class RoomCycleLoader : MonoBehaviour
     [Header("Cooldown (shared across scenes)")]
     [SerializeField] float cooldownSeconds = 3f;
 
-    // ✅ Globalne dla całej gry (nie resetują się przy zmianie sceny)
     static float globalNextAllowedTime = 0f;
     static bool globalIsLoading = false;
 
@@ -27,7 +26,6 @@ public class RoomCycleLoader : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Po załadowaniu nowej sceny odblokuj możliwość kolejnego loadu
         globalIsLoading = false;
     }
 
@@ -41,7 +39,6 @@ public class RoomCycleLoader : MonoBehaviour
         return true;
     }
 
-    // ButtonRight
     public void Next()
     {
         if (!CanLoad()) return;
@@ -58,7 +55,6 @@ public class RoomCycleLoader : MonoBehaviour
         SceneManager.LoadScene(prefix + next);
     }
 
-    // ButtonLeft
     public void Prev()
     {
         if (!CanLoad()) return;

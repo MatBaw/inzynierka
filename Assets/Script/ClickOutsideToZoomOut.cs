@@ -20,13 +20,11 @@ public class ClickOutsideToZoomOut : MonoBehaviour
         cam = Camera.main;
     }
 
-    // Wywołaj to zaraz po wejściu w zoom
     public void IgnoreNextClick()
     {
         ignoreClicksUntil = Time.time + ignoreClicksAfterZoomSeconds;
     }
 
-    // Opcjonalnie: ręczne ustawienie czasu blokady
     public void IgnoreClicksFor(float seconds)
     {
         ignoreClicksUntil = Time.time + seconds;
@@ -43,7 +41,6 @@ public class ClickOutsideToZoomOut : MonoBehaviour
         if (!zoomController.IsZoomed)
             return;
 
-        // Ignoruj klik zaraz po wejściu w zoom
         if (Time.time < ignoreClicksUntil)
             return;
 

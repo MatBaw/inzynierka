@@ -1,94 +1,56 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Graphic = UnityEngine.UI.Graphic;
 
 public class SceneEyeInteractionToggle : MonoBehaviour
 {
     [Header("Icon")]
-    [SerializeField] private GameObject iconRoot;
-    [SerializeField] private Image iconImage;
-    [SerializeField] private Sprite eyeOpenSprite;
-    [SerializeField] private Sprite eyeClosedSprite;
+    public Image iconImage;
+    public Sprite eyeOpenSprite;
+    public Sprite eyeClosedSprite;
 
-    [Header("World interaction to disable")]
-    [SerializeField] private GazeDwellClick2D gazeClick2D;
-    [SerializeField] private GazeEdgeButtons gazeEdgeButtons;
+    [Header("World interaction")]
+    public GazeDwellClick2D gazeClick2D;
+    public GazeEdgeButtons gazeEdgeButtons;
 
-    private const string GlobalPrefKey = "EyeTrackingEnabled";
-    private const string SceneInteractionPrefKey = "EyeInteractionEnabledInScene";
+    [Header("UI graphics to block from gaze")]
+    public Graphic[] uiRaycastToDisable;
 
-    public static bool IsGlobalEyeTrackingEnabled()
+    private bool interactionEnabled = true;
+
+    private void OnEnable()
     {
-        return PlayerPrefs.GetInt(GlobalPrefKey, 1) == 1;
-    }
-
-    public static bool IsSceneInteractionEnabled()
-    {
-        return PlayerPrefs.GetInt(SceneInteractionPrefKey, 1) == 1;
-    }
-
-    private void Start()
-    {
-        ApplyCurrentState();
-        Debug.Log("[SceneEyeInteractionToggle] Start | gazeClick2D=" + gazeClick2D + " | gazeEdgeButtons=" + gazeEdgeButtons);
+        interactionEnabled = PlayerPrefs.GetInt("EyeInteractionEnabledInScene", 1) == 1;
+        ApplyState();
     }
 
     public void ToggleSceneInteraction()
     {
-        Debug.Log("[SceneEyeInteractionToggle] ToggleSceneInteraction CALLED");
-
-        if (!IsGlobalEyeTrackingEnabled())
-        {
-            Debug.Log("[SceneEyeInteractionToggle] Global eye tracking OFF");
-            return;
-        }
-
-        bool next = !IsSceneInteractionEnabled();
-        PlayerPrefs.SetInt(SceneInteractionPrefKey, next ? 1 : 0);
+        interactionEnabled = !interactionEnabled;
+        PlayerPrefs.SetInt("EyeInteractionEnabledInScene", interactionEnabled ? 1 : 0);
         PlayerPrefs.Save();
 
-        Debug.Log("[SceneEyeInteractionToggle] Scene interaction now = " + next);
-
-        ApplyCurrentState();
+        ApplyState();
     }
 
-    public void ApplyCurrentState()
-    {
-        bool globalEnabled = IsGlobalEyeTrackingEnabled();
-
-        if (!globalEnabled)
-        {
-            if (iconRoot != null)
-                iconRoot.SetActive(false);
-
-            SetSceneInteractionEnabled(false);
-            return;
-        }
-
-        if (iconRoot != null)
-            iconRoot.SetActive(true);
-
-        bool sceneInteractionEnabled = IsSceneInteractionEnabled();
-
-        SetSceneInteractionEnabled(sceneInteractionEnabled);
-        RefreshIcon(sceneInteractionEnabled);
-    }
-
-    private void SetSceneInteractionEnabled(bool enabled)
+    private void ApplyState()
     {
         if (gazeClick2D != null)
-            gazeClick2D.enabled = enabled;
+            gazeClick2D.enabled = interactionEnabled;
 
         if (gazeEdgeButtons != null)
-            gazeEdgeButtons.enabled = enabled;
+            gazeEdgeButtons.enabled = interactionEnabled;
 
-        Debug.Log("[SceneEyeInteractionToggle] SetSceneInteractionEnabled = " + enabled);
-    }
+        if (uiRaycastToDisable != null)
+        {
+            foreach (var g in uiRaycastToDisable)
+            {
+                if (g != null)
+                    g.raycastTarget = interactionEnabled;
+            }
+        }
 
-    private void RefreshIcon(bool interactionEnabled)
-    {
-        if (iconImage == null)
-            return;
-
-        iconImage.sprite = interactionEnabled ? eyeOpenSprite : eyeClosedSprite;
+        if (iconImage != null)
+            iconImage.sprite = interactionEnabled ? eyeOpenSprite : eyeClosedSprite;
     }
 }

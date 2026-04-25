@@ -17,16 +17,12 @@ public class SplashFade : MonoBehaviour
 
     IEnumerator PlaySplash()
     {
-        // Fade In
         yield return StartCoroutine(Fade(0f, 1f, fadeInTime));
 
-        // Czekanie
         yield return new WaitForSeconds(visibleTime);
 
-        // Fade Out
         yield return StartCoroutine(Fade(1f, 0f, fadeOutTime));
 
-        // Przejście do następnej sceny
         SceneManager.LoadScene(nextSceneName);
     }
 

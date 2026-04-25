@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PuzzleUIOverlay : MonoBehaviour
 {
-    [SerializeField] GameObject inventoryBar;   // przeciągnij tu InventoryBar
-    [SerializeField] GameObject[] hideExtraUI;   // opcjonalnie: inne rzeczy do ukrycia (strzałki, gaze dot itp.)
+    [SerializeField] GameObject inventoryBar;
+    [SerializeField] GameObject[] hideExtraUI;
 
     void OnEnable()
     {

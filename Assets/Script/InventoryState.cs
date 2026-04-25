@@ -8,6 +8,7 @@ public static class InventoryState
     public const string Pencil = "PENCIL";
     public const string Cheese = "CHEESE";
     public const string Mouse = "MOUSE";
+    public const string Key = "KEY";
 
     private static List<string> presentItems = new List<string>();
     private static List<string> pastItems = new List<string>();
@@ -21,6 +22,8 @@ public static class InventoryState
     private static bool keyDroppedBehindCabinet = false;
     private static bool keyPulledOutByMouse = false;
     private static bool keyCollected = false;
+
+    private static bool visitedPastOnce = false;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void Init()
@@ -37,7 +40,22 @@ public static class InventoryState
         keyPulledOutByMouse = false;
         keyCollected = false;
 
+        visitedPastOnce = false;
+
+        ClockState.ResetState();
+
         Debug.Log("[InventoryState] Init");
+    }
+
+    public static bool HasVisitedPastOnce()
+    {
+        return visitedPastOnce;
+    }
+
+    public static void SetVisitedPastOnce(bool value)
+    {
+        visitedPastOnce = value;
+        Debug.Log("[InventoryState] SetVisitedPastOnce = " + value);
     }
 
     public static bool IsPresentScene()
@@ -212,12 +230,21 @@ public static class InventoryState
     public static void SetKeyCollected(bool value)
     {
         keyCollected = value;
-        Debug.Log("[InventoryState] SetKeyCollected = " + value);
-    }
 
-    // =========================
-    // KOMPATYBILNOŚĆ ZE STARYM KODEM
-    // =========================
+        if (value)
+        {
+            if (IsPresentScene())
+                AddItemToPresent(Key);
+            else
+                AddItemToPast(Key);
+        }
+        else
+        {
+            RemoveItem(Key);
+        }   
+
+    Debug.Log("[InventoryState] SetKeyCollected = " + value);
+}
 
     public static bool HasPencil()
     {
@@ -283,6 +310,28 @@ public static class InventoryState
         }
 
         Debug.Log("[InventoryState] SetMouse = " + value);
+    }
+
+    public static bool HasKey()
+    {
+        return presentItems.Contains(Key);
+    }
+
+    public static void SetKey(bool value)
+    {
+        if (value)
+        {
+            if (!presentItems.Contains(Key))
+                presentItems.Add(Key);
+        }
+        else
+        {
+            presentItems.Remove(Key);
+            if (selectedItem == Key)
+                selectedItem = None;
+        }
+
+        Debug.Log("[InventoryState] SetKey = " + value);
     }
 
     public static void LoadFromSlot(int slot)
@@ -308,11 +357,16 @@ public static class InventoryState
         SetKeyPulledOutByMouse(data.keyPulledOutByMouse);
         SetKeyCollected(data.keyCollected);
 
+        SetVisitedPastOnce(data.visitedPastOnce);
+        ClockState.SetSolved(data.clockSolved);
+
         Debug.Log(
             "[InventoryState] LoadFromSlot(" + slot + ")" +
             " | hasPencil=" + data.hasPencil +
             " | hasCheese=" + data.hasCheese +
             " | hasMouse=" + data.hasMouse +
+            " | clockSolved=" + data.clockSolved +
+            " | visitedPastOnce=" + data.visitedPastOnce +
             " | paperRevealed=" + data.paperRevealed +
             " | mouseHoleSolved=" + data.mouseHoleSolved +
             " | pastCabinetOpened=" + data.pastCabinetOpened +
@@ -335,315 +389,10 @@ public static class InventoryState
         keyDroppedBehindCabinet = false;
         keyPulledOutByMouse = false;
         keyCollected = false;
+        visitedPastOnce = false;
+
+        ClockState.ResetState();
 
         Debug.Log("[InventoryState] ClearAll()");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public static class InventoryState
-{
-    public const string None = "";
-    public const string Pencil = "PENCIL";
-    public const string Cheese = "CHEESE";
-    public const string Mouse = "MOUSE";
-
-    private static List<string> presentItems = new List<string>();
-    private static List<string> pastItems = new List<string>();
-
-    private static string selectedItem = None;
-
-    private static bool paperRevealed = false;
-
-    private static bool mouseHoleSolved = false;
-
-    private static bool pastCabinetOpened = false;
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void Init()
-    {
-        presentItems = new List<string>();
-        pastItems = new List<string>();
-        selectedItem = None;
-        paperRevealed = false;
-        mouseHoleSolved = false;
-        pastCabinetOpened = false;
-        Debug.Log("[InventoryState] Init");
-    }
-
-    public static bool IsPresentScene()
-    {
-        string scene = SceneManager.GetActiveScene().name.ToLower();
-        return scene.Contains("present");
-    }
-
-    public static bool IsPastScene()
-    {
-        string scene = SceneManager.GetActiveScene().name.ToLower();
-        return scene.Contains("past");
-    }
-
-    public static bool IsPastCabinetOpened()
-    {
-        return pastCabinetOpened;
-    }
-
-public static void SetPastCabinetOpened(bool value)
-{
-    pastCabinetOpened = value;
-    Debug.Log("[InventoryState] SetPastCabinetOpened = " + value);
-}
-
-    public static List<string> GetCurrentInventory()
-    {
-        return IsPresentScene() ? presentItems : pastItems;
-    }
-
-    public static string GetItemAtSlot(int slotIndex)
-    {
-        List<string> current = GetCurrentInventory();
-
-        if (slotIndex < 0 || slotIndex >= current.Count)
-            return None;
-
-        return current[slotIndex];
-    }
-
-    public static int GetCurrentInventoryCount()
-    {
-        return GetCurrentInventory().Count;
-    }
-
-    public static bool HasItem(string itemId)
-    {
-        return presentItems.Contains(itemId) || pastItems.Contains(itemId);
-    }
-
-    public static bool HasItemInCurrentTime(string itemId)
-    {
-        return GetCurrentInventory().Contains(itemId);
-    }
-
-    public static void AddItemToPresent(string itemId)
-    {
-        if (!presentItems.Contains(itemId))
-        {
-            presentItems.Add(itemId);
-            Debug.Log("[InventoryState] Added to PRESENT: " + itemId);
-        }
-    }
-
-    public static void AddItemToPast(string itemId)
-    {
-        if (!pastItems.Contains(itemId))
-        {
-            pastItems.Add(itemId);
-            Debug.Log("[InventoryState] Added to PAST: " + itemId);
-        }
-    }
-
-    public static void RemoveItem(string itemId)
-    {
-        presentItems.Remove(itemId);
-        pastItems.Remove(itemId);
-
-        if (selectedItem == itemId)
-            selectedItem = None;
-
-        Debug.Log("[InventoryState] Removed item: " + itemId);
-    }
-
-    public static string GetSelectedItem()
-    {
-        return selectedItem;
-    }
-
-    public static void SetSelectedItem(string itemId)
-    {
-        if (string.IsNullOrEmpty(itemId))
-        {
-            selectedItem = None;
-            Debug.Log("[InventoryState] SetSelectedItem = NONE");
-            return;
-        }
-
-        if (!HasItem(itemId))
-        {
-            Debug.Log("[InventoryState] Nie można zaznaczyć itemu, bo go nie ma: " + itemId);
-            return;
-        }
-
-        selectedItem = itemId;
-        Debug.Log("[InventoryState] SetSelectedItem = " + itemId);
-    }
-
-    public static bool IsSelected(string itemId)
-    {
-        return selectedItem == itemId;
-    }
-
-    public static void ClearSelectionIfItemNotInCurrentTime()
-    {
-        if (!string.IsNullOrEmpty(selectedItem) && !HasItemInCurrentTime(selectedItem))
-        {
-            Debug.Log("[InventoryState] ClearSelectionIfItemNotInCurrentTime -> " + selectedItem);
-            selectedItem = None;
-        }
-    }
-
-    public static bool IsPaperRevealed()
-    {
-        return paperRevealed;
-    }
-
-    public static void SetPaperRevealed(bool value)
-    {
-        paperRevealed = value;
-        Debug.Log("[InventoryState] SetPaperRevealed = " + value);
-    }
-
-    public static bool HasPencil()
-    {
-        return presentItems.Contains(Pencil);
-    }
-
-    public static void SetPencil(bool value)
-    {
-        if (value)
-        {
-            if (!presentItems.Contains(Pencil))
-                presentItems.Add(Pencil);
-        }
-        else
-        {
-            presentItems.Remove(Pencil);
-            if (selectedItem == Pencil)
-                selectedItem = None;
-        }
-
-        Debug.Log("[InventoryState] SetPencil = " + value);
-    }
-
-    public static bool HasCheese()
-    {
-        return pastItems.Contains(Cheese);
-    }
-
-    public static void SetCheese(bool value)
-    {
-        if (value)
-        {
-            if (!pastItems.Contains(Cheese))
-                pastItems.Add(Cheese);
-        }
-        else
-        {
-            pastItems.Remove(Cheese);
-            if (selectedItem == Cheese)
-                selectedItem = None;
-        }
-
-        Debug.Log("[InventoryState] SetCheese = " + value);
-    }
-
-    public static bool HasMouse()
-    {
-        return pastItems.Contains(Mouse);
-    }
-
-    public static void SetMouse(bool value)
-    {
-        if (value)
-        {
-            if (!pastItems.Contains(Mouse))
-                pastItems.Add(Mouse);
-        }
-        else
-        {
-            pastItems.Remove(Mouse);
-            if (selectedItem == Mouse)
-                selectedItem = None;
-        }
-
-        Debug.Log("[InventoryState] SetMouse = " + value);
-    }
-
-    public static bool IsMouseHoleSolved()
-{
-    return mouseHoleSolved;
-}
-
-public static void SetMouseHoleSolved(bool value)
-{
-    mouseHoleSolved = value;
-    Debug.Log("[InventoryState] SetMouseHoleSolved = " + value);
-}
-
-public static void LoadFromSlot(int slot)
-{
-    ClearAll();
-
-    SaveSystem.SaveData data = SaveSystem.Load(slot);
-    if (data == null)
-    {
-        Debug.Log("[InventoryState] LoadFromSlot -> brak danych w slocie " + slot);
-        return;
-    }
-
-    SetPencil(data.hasPencil);
-    SetCheese(data.hasCheese);
-    SetMouse(data.hasMouse);
-    SetPaperRevealed(data.paperRevealed);
-    SetMouseHoleSolved(data.mouseHoleSolved);
-    SetPastCabinetOpened(data.pastCabinetOpened);
-
-    Debug.Log(
-        "[InventoryState] LoadFromSlot(" + slot + ")" +
-        " | hasPencil=" + data.hasPencil +
-        " | hasCheese=" + data.hasCheese +
-        " | hasMouse=" + data.hasMouse +
-        " | paperRevealed=" + data.paperRevealed
-    );
-}
-
-    public static void ClearAll()
-    {
-        presentItems.Clear();
-        pastItems.Clear();
-        selectedItem = None;
-        paperRevealed = false;
-        mouseHoleSolved = false;
-        pastCabinetOpened = false;
-        Debug.Log("[InventoryState] ClearAll()");
-    }
-}*/
-
-

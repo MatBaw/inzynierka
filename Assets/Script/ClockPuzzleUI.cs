@@ -50,7 +50,6 @@ public class ClockPuzzleUI : MonoBehaviour
         if (zoomController == null)
             zoomController = FindFirstObjectByType<CameraZoomController>();
 
-        // zapamiętaj oryginalne kolory targetów
         if (successTintTargets != null && successTintTargets.Length > 0)
         {
             originalColors = new Color[successTintTargets.Length];
@@ -100,7 +99,7 @@ void OnEnable()
         RestoreColors();
     }
 
-    // ======= przyciski cyfr =======
+    //  przyciski cyfr
 
     public void IncH1() { if (closingLocked) return; SetHourDigits(GetH1() + 1, GetH2()); SaveState(); }
     public void DecH1() { if (closingLocked) return; SetHourDigits(GetH1() - 1, GetH2()); SaveState(); }
@@ -114,7 +113,6 @@ void OnEnable()
     public void IncM2() { if (closingLocked) return; SetMinuteDigits(GetM1(), GetM2() + 1); SaveState(); }
     public void DecM2() { if (closingLocked) return; SetMinuteDigits(GetM1(), GetM2() - 1); SaveState(); }
 
-    // ✅ OK
     public void Confirm()
     {
         if (closingLocked) return;
@@ -133,13 +131,11 @@ void OnEnable()
             return;
         }
 
-        // zła godzina -> nic zielonego, po prostu zostaw UI albo zamknij
-        // Ja bym ZOSTAWIŁ puzzle otwarte, żeby gracz poprawił:
         closingLocked = false;
-        // jeśli chcesz jednak zamykać: ClosePuzzle();
+
     }
 
-    // ✅ Anuluj
+
     public void Cancel()
     {
         if (closingLocked) return;

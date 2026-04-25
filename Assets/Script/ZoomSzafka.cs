@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Szafka z zoom-in po kliknięciu myszą LUB po dwell-gaze.
-/// Automatycznie blokuje dwell-click na czas po zoomie (żeby wzrok nie odzoomował natychmiast).
-/// </summary>
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class ZoomSzafka : MonoBehaviour
@@ -13,7 +9,7 @@ public class ZoomSzafka : MonoBehaviour
     public Sprite zoomSprite;
 
     [Header("Zoom Root")]
-    public GameObject zoomRoot;  // obiekt aktywowany po zoomie (np. wnętrze szafki)
+    public GameObject zoomRoot;
 
     [Header("Cooldown po zoomie")]
     [Tooltip("Jak długo wzrok nie może odzoomować po wejściu w zoom")]
@@ -36,7 +32,6 @@ public class ZoomSzafka : MonoBehaviour
             zoomRoot.SetActive(false);
     }
 
-    // Klik myszą
     void OnMouseDown()
     {
         if (zoomController == null) return;
@@ -44,42 +39,30 @@ public class ZoomSzafka : MonoBehaviour
             ZoomIn();
     }
 
-    /// <summary>
-    /// Wejście w zoom — wywoływane przez klik myszą LUB przez GazeDwellTarget -> UnityEvent
-    /// </summary>
     public void ZoomIn()
     {
         if (zoomController == null) return;
-        if (zoomController.IsZoomed) return; // już zoomed, ignoruj
-
+        if (zoomController.IsZoomed) return;
         // Zmień sprite
         if (sr != null && zoomSprite != null)
             sr.sprite = zoomSprite;
 
-        // Pokaż wnętrze
         if (zoomRoot != null)
             zoomRoot.SetActive(true);
 
-        // Wyłącz duży collider (kliknięcie w nic nie odzoomuje przez collider szafki)
         if (bigCollider != null)
             bigCollider.enabled = false;
 
-        // Zrób zoom kamery
         zoomController.ZoomTo(transform);
 
-        // --- WAŻNE: zablokuj dwell na chwilę żeby wzrok nie odzoomował natychmiast ---
         if (GazeDwellClick2D.Instance != null)
             GazeDwellClick2D.Instance.TriggerCooldown(gazeBlockDurationOnZoom);
 
-        // Stary system (ClickOutsideToZoomOut) też zignoruje następny klik
         var clickOutside = FindFirstObjectByType<ClickOutsideToZoomOut>();
         if (clickOutside != null)
             clickOutside.IgnoreNextClick();
     }
-
-    /// <summary>
-    /// Reset do stanu normalnego — wywoływane przy wychodzeniu z zooma
-    /// </summary>
+    
     public void ResetSprite()
     {
         if (sr != null && normalSprite != null)

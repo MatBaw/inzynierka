@@ -10,35 +10,38 @@ public class ClockSolvedAction : MonoBehaviour
     [SerializeField] string goToPresentScene = "presentroom2";
 
     [Header("Puzzle open (only used in present before solved)")]
-    [SerializeField] ClockPuzzleOpenClose puzzleOpenClose; // podepnij, jeśli w present ma się otwierać UI
+    [SerializeField] ClockPuzzleOpenClose puzzleOpenClose;
 
     public void Interact()
     {
         string current = SceneManager.GetActiveScene().name;
 
-        // Jesteśmy w przeszłości? -> wróć do teraźniejszości (presentroom2)
         if (current.StartsWith("pastroom"))
         {
-            SceneManager.LoadScene(goToPresentScene);
+            if (SceneFadeTransition.Instance != null)
+                SceneFadeTransition.Instance.FadeToScene(goToPresentScene);
+            else
+                SceneManager.LoadScene(goToPresentScene);
+
             return;
         }
 
-        // Jesteśmy w teraźniejszości:
-        // jeśli puzzle już rozwiązane -> idź do pastroom1
         if (ClockState.IsSolved)
         {
-            SceneManager.LoadScene(goToPastScene);
+            InventoryState.SetVisitedPastOnce(true);
+
+            if (SceneFadeTransition.Instance != null)
+                SceneFadeTransition.Instance.FadeToScene(goToPastScene);
+            else
+                SceneManager.LoadScene(goToPastScene);
+
             return;
         }
 
-        // jeśli nie rozwiązane -> otwórz puzzle
         if (puzzleOpenClose != null)
-        {
             puzzleOpenClose.OpenPuzzle();
-        }
     }
 
-    // mysz
     void OnMouseDown()
     {
         Interact();

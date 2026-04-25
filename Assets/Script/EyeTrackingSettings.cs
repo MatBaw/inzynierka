@@ -1,157 +1,101 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EyeTrackingSettings : MonoBehaviour
 {
     [Header("UI objects to show/hide")]
-    [SerializeField] private GameObject gazeDot;
+    public GameObject gazeDot;
+    public GameObject sceneEyeToggleButton;
 
     [Header("Toggle button image")]
-    [SerializeField] private Image toggleButtonImage;
-    [SerializeField] private Sprite eyeTrackerOnSprite;
-    [SerializeField] private Sprite eyeTrackerOffSprite;
+    public Image toggleButtonImage;
+    public Sprite eyeTrackerOnSprite;
+    public Sprite eyeTrackerOffSprite;
 
     [Header("Default behavior")]
-    [SerializeField] private bool forceDefaultOnAtStart = true;
+    public bool forceDefaultOnAtStart = false;
 
     [Header("Scripts to enable/disable")]
-    [SerializeField] private GazeDwellClick2D gazeClick2D;
-    [SerializeField] private GazeDwellClickUI gazeClickUI;
-    [SerializeField] private GazeEdgeButtons gazeEdgeButtons;
-    [SerializeField] private GazeDotController gazeDotController;
-    [SerializeField] private GazeCursorRingUI gazeCursorRingUI;
+    public GazeDwellClick2D gazeClick2D;
+    public GazeDwellClickUI gazeClickUI;
+    public GazeEdgeButtons gazeEdgeButtons;
+    public GazeDotController gazeDotController;
+    public GazeCursorRingUI gazeCursorRingUI;
 
-    private const string PrefKey = "EyeTrackingEnabled";
-    private const string SceneInteractionPrefKey = "EyeInteractionEnabledInScene";
-
-    public static bool IsEnabled()
-    {
-        return PlayerPrefs.GetInt(PrefKey, 1) == 1;
-    }
+    private bool isEyeTrackingEnabled = true;
 
     private void Awake()
     {
+        Debug.Log("[EyeTrackingSettings] Awake START | Scene=" + SceneManager.GetActiveScene().name
+            + " | Saved EyeTrackingEnabled=" + PlayerPrefs.GetInt("EyeTrackingEnabled", -999)
+            + " | forceDefaultOnAtStart=" + forceDefaultOnAtStart
+            + " | object=" + gameObject.name);
+
         if (forceDefaultOnAtStart)
         {
-            PlayerPrefs.SetInt(PrefKey, 1);
-            PlayerPrefs.SetInt(SceneInteractionPrefKey, 1);
+            Debug.LogWarning("[EyeTrackingSettings] FORCE DEFAULT ON fired on object: " + gameObject.name
+                + " | Scene=" + SceneManager.GetActiveScene().name);
+
+            PlayerPrefs.SetInt("EyeTrackingEnabled", 1);
+            PlayerPrefs.SetInt("EyeInteractionEnabledInScene", 1);
             PlayerPrefs.Save();
         }
-    }
 
-    private void Start()
-    {
-        Apply(IsEnabled());
+        isEyeTrackingEnabled = PlayerPrefs.GetInt("EyeTrackingEnabled", 1) == 1;
+
+        Debug.Log("[EyeTrackingSettings] Awake AFTER READ | Scene=" + SceneManager.GetActiveScene().name
+            + " | EyeTrackingEnabled=" + isEyeTrackingEnabled
+            + " | object=" + gameObject.name);
+
+        ApplyState();
     }
 
     public void Toggle()
     {
-        SetEnabled(!IsEnabled());
-    }
+        isEyeTrackingEnabled = !isEyeTrackingEnabled;
 
-    public void SetEnabled(bool enabled)
-    {
-        PlayerPrefs.SetInt(PrefKey, enabled ? 1 : 0);
+        Debug.LogWarning("[EyeTrackingSettings] Toggle | Scene=" + SceneManager.GetActiveScene().name
+            + " | NEW EyeTrackingEnabled=" + isEyeTrackingEnabled
+            + " | object=" + gameObject.name);
 
-        // Gdy globalnie włączamy eye tracking, domyślnie włączamy też interakcję sceny
-        if (enabled)
-            PlayerPrefs.SetInt(SceneInteractionPrefKey, 1);
-
+        PlayerPrefs.SetInt("EyeTrackingEnabled", isEyeTrackingEnabled ? 1 : 0);
+        PlayerPrefs.SetInt("EyeInteractionEnabledInScene", isEyeTrackingEnabled ? 1 : 0);
         PlayerPrefs.Save();
 
-        Apply(enabled);
-
-        Debug.Log("[EyeTrackingSettings] enabled = " + enabled);
+        ApplyState();
     }
 
-    private void Apply(bool enabled)
+    private void ApplyState()
     {
-        if (gazeDot != null)
-            gazeDot.SetActive(enabled);
-
         if (gazeClick2D != null)
-            gazeClick2D.enabled = enabled;
+            gazeClick2D.enabled = isEyeTrackingEnabled;
 
         if (gazeClickUI != null)
-            gazeClickUI.enabled = enabled;
+            gazeClickUI.enabled = isEyeTrackingEnabled;
 
         if (gazeEdgeButtons != null)
-            gazeEdgeButtons.enabled = enabled;
+            gazeEdgeButtons.enabled = isEyeTrackingEnabled;
 
         if (gazeDotController != null)
-            gazeDotController.enabled = enabled;
+            gazeDotController.enabled = isEyeTrackingEnabled;
 
         if (gazeCursorRingUI != null)
-            gazeCursorRingUI.enabled = enabled;
+            gazeCursorRingUI.enabled = isEyeTrackingEnabled;
 
-        RefreshButtonVisual(enabled);
-    }
+        if (gazeDot != null)
+            gazeDot.SetActive(isEyeTrackingEnabled);
 
-    private void RefreshButtonVisual(bool enabled)
-    {
-        if (toggleButtonImage == null)
-            return;
+        if (sceneEyeToggleButton != null)
+            sceneEyeToggleButton.SetActive(isEyeTrackingEnabled);
 
-        toggleButtonImage.sprite = enabled ? eyeTrackerOnSprite : eyeTrackerOffSprite;
+        if (toggleButtonImage != null)
+            toggleButtonImage.sprite = isEyeTrackingEnabled ? eyeTrackerOnSprite : eyeTrackerOffSprite;
+
+        Debug.Log("[EyeTrackingSettings] ApplyState | Scene=" + SceneManager.GetActiveScene().name
+            + " | EyeTrackingEnabled=" + isEyeTrackingEnabled
+            + " | GazeDot=" + (gazeDot != null ? gazeDot.activeSelf.ToString() : "NULL")
+            + " | SceneEyeToggleButton=" + (sceneEyeToggleButton != null ? sceneEyeToggleButton.activeSelf.ToString() : "NULL")
+            + " | object=" + gameObject.name);
     }
 }
-
-
-
-
-
-
-
-
-/*using UnityEngine;
-
-public class EyeTrackingSettings : MonoBehaviour
-{
-    [Header("UI objects to show/hide")]
-    [SerializeField] GameObject gazeDot;
-    [SerializeField] GameObject eyeToggleButton;
-
-    [Header("Scripts to enable/disable")]
-    [SerializeField] GazeDwellClick2D gazeClick2D;
-    [SerializeField] GazeDwellClickUI gazeClickUI;
-    [SerializeField] GazeEdgeButtons gazeEdgeButtons;
-    [SerializeField] GazeDotController gazeDotController;
-    [SerializeField] GazeCursorRingUI gazeCursorRingUI;
-
-    const string PrefKey = "EyeTrackingEnabled";
-
-    public static bool IsEnabled()
-    {
-        return PlayerPrefs.GetInt(PrefKey, 1) == 1;
-    }
-
-   void Start()
-{
-    bool hasKey = PlayerPrefs.HasKey(PrefKey);
-    int val = PlayerPrefs.GetInt(PrefKey, 1);
-    Debug.Log($"[EyeSettings] Start — hasKey={hasKey}, val={val}, IsEnabled={IsEnabled()}");
-    Apply(IsEnabled());
-}
-    public void SetEnabled(bool enabled)
-    {
-        PlayerPrefs.SetInt(PrefKey, enabled ? 1 : 0);
-        PlayerPrefs.Save();
-        Apply(enabled);
-    }
-
-    public void Toggle()
-    {
-        SetEnabled(!IsEnabled());
-    }
-
-    void Apply(bool enabled)
-    {
-        if (gazeDot != null)          gazeDot.SetActive(enabled);
-        if (eyeToggleButton != null)  eyeToggleButton.SetActive(true);
-        if (gazeClick2D != null)      gazeClick2D.enabled      = enabled;
-        if (gazeClickUI != null)      gazeClickUI.enabled      = enabled;
-        if (gazeEdgeButtons != null)  gazeEdgeButtons.enabled  = enabled;
-        if (gazeDotController != null) gazeDotController.enabled = enabled;
-        if (gazeCursorRingUI != null)  gazeCursorRingUI.enabled  = enabled;
-    }
-}*/

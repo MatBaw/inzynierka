@@ -3,24 +3,24 @@ using UnityEngine.UI;
 
 public class GazeCursorRingUI : MonoBehaviour
 {
-    [Header("=== WYMAGANE REFERENCJE ===")]
+    [Header("WYMAGANE REFERENCJE")]
     [SerializeField] private Image ringBg;
     [SerializeField] private Image ringFill;
 
-    [Header("=== ROZMIARY ===")]
+    [Header("ROZMIARY")]
     [SerializeField] private float idleSize = 16f;
     [SerializeField] private float hoverSize = 48f;
 
-    [Header("=== KOLORY ===")]
+    [Header("KOLORY")]
     [SerializeField] private Color idleColor      = new Color(1f, 1f, 1f, 0.85f);
     [SerializeField] private Color hoverBgColor   = new Color(0.9f, 0.1f, 0.1f, 0.75f);
     [SerializeField] private Color fillColor      = new Color(0.2f, 1f, 0.3f, 0.95f);
 
-    [Header("=== ANIMACJA ===")]
+    [Header("ANIMACJA")]
     [SerializeField] private float sizeTransitionSpeed = 8f;
     [SerializeField] private bool animateFillClockwise = true;
 
-    [Header("=== DEBUG ===")]
+    [Header("DEBUG")]
     [SerializeField] private bool debugLog = false;
 
     private RectTransform rt;

@@ -1,10 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Dodaj ten skrypt na obiekt PencilIcon.
-/// Będzie logował KTO i SKĄD wywołuje SetActive(false).
-/// Po znalezieniu winowajcy usuń ten skrypt.
-/// </summary>
 public class PencilIconWatcher : MonoBehaviour
 {
     void OnEnable()

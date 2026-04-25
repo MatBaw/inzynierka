@@ -4,8 +4,7 @@ public class PickupLooseKey : MonoBehaviour
 {
     private void Start()
     {
-        if (InventoryState.IsKeyCollected())
-            gameObject.SetActive(false);
+        ApplySavedState();
     }
 
     private void OnMouseDown()
@@ -28,8 +27,29 @@ public class PickupLooseKey : MonoBehaviour
         }
 
         InventoryState.SetKeyCollected(true);
+        InventoryState.SetSelectedItem(InventoryState.None);
+
+        RefreshInventoryUI();
         gameObject.SetActive(false);
 
         Debug.Log("[PickupLooseKey] Klucz został podniesiony.");
+    }
+
+    private void ApplySavedState()
+    {
+        if (InventoryState.IsKeyCollected())
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        gameObject.SetActive(true);
+    }
+
+    private void RefreshInventoryUI()
+    {
+        InventorySlotItemUI[] all = FindObjectsOfType<InventorySlotItemUI>(true);
+        foreach (InventorySlotItemUI slot in all)
+            slot.Refresh();
     }
 }

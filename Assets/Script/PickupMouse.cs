@@ -10,7 +10,6 @@ public class PickupMouse : MonoBehaviour
             return;
         }
 
-        // jeśli zagadka nie została rozwiązana, mysz ma być schowana / niedostępna
         if (!InventoryState.IsMouseHoleSolved())
             gameObject.SetActive(false);
     }

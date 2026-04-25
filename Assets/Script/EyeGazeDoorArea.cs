@@ -4,14 +4,14 @@ public class EyeGazeDoorArea : MonoBehaviour
 {
     public SpriteRenderer openDoorSprite;
 
-    public BoxCollider2D closedCollider; // obszar, gdy drzwi są zamknięte
-    public BoxCollider2D openCollider;   // obszar, gdy drzwi są otwarte
+    public BoxCollider2D closedCollider;
+    public BoxCollider2D openCollider;
 
     bool isOpen = false;
 
     void Start()
     {
-        SetOpen(false); // startowo zamknięte
+        SetOpen(false);
     }
 
     public void ToggleDoor()

@@ -7,18 +7,18 @@ public class GazeDwellClickUI : MonoBehaviour
 {
     public static GazeDwellClickUI Instance { get; private set; }
 
-    [Header("=== WYMAGANE REFERENCJE ===")]
+    [Header("WYMAGANE REFERENCJE")]
     [SerializeField] private RectTransform gazeDot;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GazeCursorRingUI cursorUI;
 
-    [Header("=== DWELL CZAS ===")]
+    [Header("DWELL CZAS")]
     [SerializeField] private float dwellSeconds = 1.2f;
 
-    [Header("=== COOLDOWN ===")]
+    [Header("COOLDOWN")]
     [SerializeField] private float cooldownAfterClick = 0.5f;
 
-    [Header("=== DEBUG ===")]
+    [Header("DEBUG")]
     [SerializeField] private bool showDebugLogs = false;
 
     private Button currentButton;
@@ -105,8 +105,6 @@ public class GazeDwellClickUI : MonoBehaviour
                 Debug.Log($"[GazeUI] Wejście: {currentButton.name}", currentButton);
         }
 
-        // Nic UI nie śledzimy -> nie ruszamy kursora,
-        // żeby 2D/world mogło nim sterować.
         if (currentButton == null)
             return;
 
